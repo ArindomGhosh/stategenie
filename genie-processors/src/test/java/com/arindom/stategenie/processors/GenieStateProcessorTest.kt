@@ -65,6 +65,7 @@ class GenieStateProcessorTest {
         val result = KotlinCompilation()
             .apply {
                 sources = listOf(kotlinSource)
+                inheritClassPath = true
                 symbolProcessorProviders = listOf(GenieStateSymbolProcessorProvider())
                 verbose = false
                 kspWithCompilation = true
