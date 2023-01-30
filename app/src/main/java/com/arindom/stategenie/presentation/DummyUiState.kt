@@ -7,7 +7,6 @@ import com.arindom.stategenie.annotations.StateGenie
 import com.arindom.stategenie.annotations.ToState
 import kotlinx.parcelize.Parcelize
 
-
 interface BaseUIiState<T : Any> {
     @ToState(
         stateName = "Success"
@@ -24,11 +23,7 @@ interface BaseUIiState<T : Any> {
     )
     val error: Throwable
 }
-// : BaseUIiState<DummyUiState>
-//  isParcelable = true
 
-//rootName = "NewUiSate",
-//isParcelable = true
 @StateGenie(
     rootName = "NewUiSate",
     isParcelable = true
