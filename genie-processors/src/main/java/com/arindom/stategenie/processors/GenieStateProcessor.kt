@@ -8,7 +8,6 @@ import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.validate
 
-
 class GenieStateProcessor(
     private val logger: KSPLogger,
     private val codeGenerator: CodeGenerator,
