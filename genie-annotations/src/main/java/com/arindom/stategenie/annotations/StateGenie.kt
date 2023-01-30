@@ -6,7 +6,7 @@ package com.arindom.stategenie.annotations
 @Target(
     AnnotationTarget.CLASS
 )
-annotation class GenieState(
+annotation class StateGenie(
     val rootName: String = "",
     val isParcelable: Boolean = false
 ) {

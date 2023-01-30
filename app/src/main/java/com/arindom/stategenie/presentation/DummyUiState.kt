@@ -3,7 +3,7 @@ package com.arindom.stategenie.presentation
 import android.os.Parcelable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
-import com.arindom.stategenie.annotations.GenieState
+import com.arindom.stategenie.annotations.StateGenie
 import com.arindom.stategenie.annotations.ToState
 import kotlinx.parcelize.Parcelize
 
@@ -24,30 +24,33 @@ interface BaseUIiState<T : Any> {
     )
     val error: Throwable
 }
+// : BaseUIiState<DummyUiState>
+//  isParcelable = true
 
-@GenieState(
-//    rootName = "NewUiSate",
+//rootName = "NewUiSate",
+//isParcelable = true
+@StateGenie(
+    rootName = "NewUiSate",
     isParcelable = true
 )
-interface SomeUiState : BaseUIiState<DummyUiState> {
-//    @ToState(
-//        stateName = "LoggedOut"
-//    )
+interface UiState : BaseUIiState<List<String>> {
+    @ToState(
+        stateName = "LoggedOut"
+    )
     val loggedOut: Unit
 
     @ToState(
-        stateName = "Wierd"
+        stateName = "foo"
     )
-    val someWierd: Boolean
+    val foo: Boolean
 
     @ToState(
-        stateName = "NonUi"
+        stateName = "bar"
     )
-    val nonUiStateValue: String
-
+    val bar: String
 }
 
-@GenieState(
+@StateGenie(
     rootName = "MovieUiState",
 )
 interface MovieStates : BaseUIiState<List<String>>

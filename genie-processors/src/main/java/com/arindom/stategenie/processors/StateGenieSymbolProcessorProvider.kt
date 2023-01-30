@@ -4,9 +4,9 @@ import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
 import com.google.devtools.ksp.processing.SymbolProcessorProvider
 
-class GenieStateSymbolProcessorProvider : SymbolProcessorProvider {
+class StateGenieSymbolProcessorProvider : SymbolProcessorProvider {
     override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
-        return GenieStateProcessor(
+        return StateGenieProcessor(
             logger = environment.logger,
             codeGenerator = environment.codeGenerator,
             options = environment.options

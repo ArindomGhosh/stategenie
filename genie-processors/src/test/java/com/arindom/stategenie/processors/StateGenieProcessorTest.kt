@@ -7,14 +7,14 @@ import com.tschuchort.compiletesting.symbolProcessorProviders
 import org.junit.Assert
 import org.junit.Test
 
-class GenieStateProcessorTest {
+class StateGenieProcessorTest {
 
     @Test
     fun `GeneState annotation should compile with success`() {
         val sourceFile = """
             package geneistate
             
-            import com.arindom.stategenie.annotations.GenieState
+            import com.arindom.stategenie.annotations.StateGenie
             import com.arindom.stategenie.annotations.ToState
 
             interface BaseUIiState<T : Any> {
@@ -34,7 +34,7 @@ class GenieStateProcessorTest {
                 val error: Throwable
             }
 
-            @GenieState(
+            @StateGenie(
                 rootName = "NewUiSate",
                 isParcelable = false
             )
@@ -66,7 +66,7 @@ class GenieStateProcessorTest {
             .apply {
                 sources = listOf(kotlinSource)
                 inheritClassPath = true
-                symbolProcessorProviders = listOf(GenieStateSymbolProcessorProvider())
+                symbolProcessorProviders = listOf(StateGenieSymbolProcessorProvider())
                 verbose = false
                 kspWithCompilation = true
             }.compile()

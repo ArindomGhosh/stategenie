@@ -7,7 +7,7 @@ import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.Modifier
 import com.google.devtools.ksp.validate
 
-class GenieSymbolValidator(
+class StateGenieSymbolValidator(
     private val logger: KSPLogger
 ) {
     fun isValid(ksAnnotated: KSAnnotated): Boolean {
