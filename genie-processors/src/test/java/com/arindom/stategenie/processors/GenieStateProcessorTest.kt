@@ -5,16 +5,9 @@ import com.tschuchort.compiletesting.SourceFile
 import com.tschuchort.compiletesting.kspWithCompilation
 import com.tschuchort.compiletesting.symbolProcessorProviders
 import org.junit.Assert
-import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.TemporaryFolder
-
 
 class GenieStateProcessorTest {
-
-    @Rule
-    @JvmField
-    val temporaryFolder: TemporaryFolder = TemporaryFolder()
 
     @Test
     fun `GeneState annotation should compile with success`() {
@@ -71,14 +64,11 @@ class GenieStateProcessorTest {
 
         val result = KotlinCompilation()
             .apply {
-//                workingDir = temporaryFolder.root
                 sources = listOf(kotlinSource)
-//                inheritClassPath = true
                 symbolProcessorProviders = listOf(GenieStateSymbolProcessorProvider())
-//                verbose = false
-//                kspWithCompilation = true
+                verbose = false
+                kspWithCompilation = true
             }.compile()
         Assert.assertEquals(KotlinCompilation.ExitCode.OK, result.exitCode)
-
     }
 }
