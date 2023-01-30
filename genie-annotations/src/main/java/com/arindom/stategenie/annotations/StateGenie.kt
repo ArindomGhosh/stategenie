@@ -14,14 +14,32 @@
  * limitations under the License.
  */
 
-package com.arindom.stategenie.ui.theme
+package com.arindom.stategenie.annotations
 
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Shapes
-import androidx.compose.ui.unit.dp
-
-val Shapes = Shapes(
-    small = RoundedCornerShape(4.dp),
-    medium = RoundedCornerShape(4.dp),
-    large = RoundedCornerShape(0.dp)
+@Retention(
+    AnnotationRetention.SOURCE
 )
+@Target(
+    AnnotationTarget.CLASS
+)
+annotation class StateGenie(
+    val rootName: String = "",
+    val isParcelable: Boolean = false
+) {
+    companion object {
+        const val ROOT_NAME = "rootName"
+        const val IS_PARCELABLE = "isParcelable"
+    }
+}
+
+@Retention(
+    AnnotationRetention.SOURCE
+)
+@Target(
+    AnnotationTarget.PROPERTY
+)
+annotation class ToState(val stateName: String = "") {
+    companion object {
+        const val STATE_NAME = "stateName"
+    }
+}
