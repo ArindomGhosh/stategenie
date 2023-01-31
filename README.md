@@ -4,6 +4,30 @@
 It gives you the flexibility of reusing a base model in different scenarios while also enabling you to add new
 models over them based on your requirements reducing the repeated boiler plate code.
 
+### Gradle Setup
+- Android 
+  - build.gradle.kts (app level)
+    ```kotlin 
+    kotlin {
+        sourceSets.configureEach {
+            kotlin.srcDir("$buildDir/generated/ksp/$name/kotlin/")
+        }
+    }
+    ```
+  - build.gradle
+    ```groovy
+    android {
+      applicationVariants.all { variant ->
+         kotlin.sourceSets {
+            def name = variant.name
+            getByName(name) {
+                kotlin.srcDir("build/generated/ksp/$name/kotlin")
+            }
+         }
+      }
+    }
+    ```
+
 ## Usage
 
 `StateGenie` provides following annotations:
@@ -241,7 +265,7 @@ interface BaseUIiState<T : Any> {
     rootName = "NewUiSate",
     isParcelable = true
 )
-iinterface UiState : BaseUIiState<List<String>> {
+interface UiState : BaseUIiState<List<String>> {
     @ToState(
         stateName = "LoggedOut"
     )
