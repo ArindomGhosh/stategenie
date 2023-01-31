@@ -7,7 +7,7 @@ models over them based on your requirements reducing the repeated boiler plate c
 ### Gradle Setup
 - Android 
   - build.gradle.kts (app level)
-    - ```kotlin 
+    ```kotlin 
     kotlin {
         sourceSets.configureEach {
             kotlin.srcDir("$buildDir/generated/ksp/$name/kotlin/")
@@ -15,7 +15,7 @@ models over them based on your requirements reducing the repeated boiler plate c
     }
     ```
   - build.gradle
-    - ```groovy
+    ```groovy
     android {
       applicationVariants.all { variant ->
          kotlin.sourceSets {
