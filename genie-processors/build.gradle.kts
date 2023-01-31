@@ -1,5 +1,5 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm")
+    alias(libs.plugins.kotlin.jvm)
 }
 
 dependencies {
@@ -11,3 +11,5 @@ dependencies {
     testImplementation(libs.junit4)
     testImplementation(libs.kotlin.compile.testing)
 }
+
+apply(from = "${rootDir}/build_logic/conventions/src/main/scripts/publish.gradle")
