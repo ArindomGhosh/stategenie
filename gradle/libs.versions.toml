@@ -12,6 +12,9 @@ junit4 = "4.13.2"
 ksp = "1.7.20-1.0.7"
 kotlinPoet = "1.12.0"
 kotlinCompileTest = "1.4.9"
+koinCompose = "3.4.1"
+koin = "3.3.2"
+gson = "2.10.1"
 
 
 [libraries]
@@ -30,6 +33,11 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
+
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCompose" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 
 ksp-symbol-processing = { group = "com.google.devtools.ksp", name = "symbol-processing", version.ref = "ksp" }
 ksp-symbol-processing-api = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }

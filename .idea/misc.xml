@@ -7,4 +7,11 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+  <component name="jsonEditor">
+    <option name="stateMap">
+      <map>
+        <entry key="StateGenie" value="{&#10;  &quot;users&quot;: [&#10;    {&#10;      &quot;name&quot;: &quot;Ankita&quot;,&#10;      &quot;email&quot;: &quot;ankita@gmail.com&quot;&#10;    },&#10;    {&#10;      &quot;name&quot;: &quot;Bharti&quot;,&#10;      &quot;email&quot;: &quot;bharti@gmail.com&quot;&#10;    },&#10;    {&#10;      &quot;name&quot;: &quot;Clara&quot;,&#10;      &quot;email&quot;: &quot;clara@yahoo.com&quot;&#10;    },&#10;    {&#10;      &quot;name&quot;: &quot;David&quot;,&#10;      &quot;email&quot;: &quot;david@yahoo.com&quot;&#10;    },&#10;    {&#10;      &quot;name&quot;: &quot;Elsa&quot;,&#10;      &quot;email&quot;: &quot;elsa@yahoo.com&quot;&#10;    }&#10;  ]&#10;}" />
+      </map>
+    </option>
+  </component>
 </project>
