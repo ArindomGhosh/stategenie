@@ -18,12 +18,24 @@ class UserViewModel(
 
     init {
         viewModelScope.launch {
-            delay(3000)
-            postUiState(
-                newUiState = `UsersUiState$Generated`.SuccessState(
-                    data = usersListRepository.getUsersList()
-                )
-            )
+            postUiState(newUiState = `UsersUiState$Generated`.LoadingState)
+            usersListRepository.getGithubUserList()
+                .catch {
+                    postUiState(
+                        newUiState = `UsersUiState$Generated`.ErrorState(
+                            error = Throwable(
+                                message = it.localizedMessage
+                            )
+                        )
+                    )
+                }
+                .collect{
+                    postUiState(
+                        newUiState = `UsersUiState$Generated`.SuccessState(
+                            data = it
+                        )
+                    )
+                }
         }
     }
 

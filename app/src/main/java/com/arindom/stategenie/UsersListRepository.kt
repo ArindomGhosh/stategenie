@@ -3,6 +3,8 @@ package com.arindom.stategenie
 import android.app.Application
 import android.content.Context
 import android.util.Log
+import com.arindom.stategenie.data.UserListService
+import com.arindom.stategenie.data.model.UserResponse
 import com.arindom.stategenie.presentation.User
 import com.arindom.stategenie.presentation.UserList
 import com.google.gson.Gson
@@ -13,7 +15,8 @@ import org.koin.core.component.get
 import org.koin.core.context.GlobalContext.get
 
 class UsersListRepository(
-    private val context: Context
+    private val context: Context,
+    private val service: UserListService
 ) {
     private var jsonString = ""
     private var users = UserList()
@@ -26,5 +29,11 @@ class UsersListRepository(
             Log.d("UsersListRepository", "getUsersList: ${e.message}")
         }
         return users.users
+    }
+
+    suspend fun getGithubUserList(): Flow<List<UserResponse>> {
+      return flow {
+            emit(service.getGithubUserList(since = "2021"))
+        }
     }
 }

@@ -16,6 +16,9 @@ axion = "1.14.0"
 koinCompose = "3.4.1"
 koin = "3.3.2"
 gson = "2.10.1"
+retrofit = "2.6.0"
+gsonConverter = "2.9.0"
+coil = "2.2.2"
 
 
 [libraries]
@@ -39,6 +42,11 @@ koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", versi
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gsonConverter" }
+
+coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
 ksp-symbol-processing = { group = "com.google.devtools.ksp", name = "symbol-processing", version.ref = "ksp" }
 ksp-symbol-processing-api = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }

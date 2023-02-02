@@ -28,16 +28,21 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.TabRowDefaults.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.arindom.stategenie.presentation.UserViewModel
 import com.arindom.stategenie.presentation.`UsersUiState$Generated`
+import com.arindom.stategenie.presentation.widgets.ErrorWidget
+import com.arindom.stategenie.presentation.widgets.ProgressWidget
+import com.arindom.stategenie.presentation.widgets.UserInfo
 import com.arindom.stategenie.ui.theme.StateGenieTheme
 import org.koin.android.ext.android.inject
 import org.koin.androidx.compose.get
@@ -50,12 +55,6 @@ class MainActivity : ComponentActivity() {
             StateGenieTheme {
                 // A surface container using the 'background' color from the theme
                 UserListWidget()
-                /* Surface(
-                     modifier = Modifier.fillMaxSize(),
-                     color = MaterialTheme.colors.background
-                 ) {
-                     Greeting("Android")
-                 }*/
             }
         }
     }
@@ -69,22 +68,20 @@ fun UserListWidget(
     when (content) {
         is `UsersUiState$Generated`.SuccessState -> {
             val users = (content as `UsersUiState$Generated`.SuccessState).data
-            LazyColumn(modifier = Modifier.padding(10.dp)) {
+            LazyColumn {
                 items(users) {
-                    Greeting(name = it.name)
+                    UserInfo(modifier = Modifier, userResponse = it)
+                    Divider(color = Color.LightGray)
                 }
             }
         }
-          is `UsersUiState$Generated`.LoadingState -> {
-              Column(
-                  modifier = Modifier.fillMaxSize(),
-                  verticalArrangement = Arrangement.Center,
-                  horizontalAlignment = Alignment.CenterHorizontally
-              ) {
-                  CircularProgressIndicator()
-              }
-          }
-        is `UsersUiState$Generated`.ErrorState -> {}
+        is `UsersUiState$Generated`.LoadingState -> {
+            ProgressWidget()
+        }
+        is `UsersUiState$Generated`.ErrorState -> {
+            val error = (content as `UsersUiState$Generated`.ErrorState).error
+            ErrorWidget(modifier = Modifier, message = error.message ?: "Something went wrong, please try again!")
+        }
     }
 }
 
