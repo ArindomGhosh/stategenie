@@ -88,7 +88,15 @@ class StateGenieAnnotationVisitor(
                 extensiveName = generatedClassName
             )
         }.build()
-        file.writeTo(codeGenerator, false)
+        val dependencySource = classDeclaration.containingFile
+        val sources = if (dependencySource != null) arrayOf(dependencySource) else emptyArray()
+        file.writeTo(
+            codeGenerator = codeGenerator,
+            dependencies = Dependencies(
+                aggregating = true,
+                sources = sources
+            )
+        )
         subSetMap.clear()
     }
 
