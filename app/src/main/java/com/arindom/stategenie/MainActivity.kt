@@ -77,7 +77,7 @@ fun UserListWidget(
         }
           is `UsersUiState$Generated`.LoadingState -> {
               Column(
-                  modifier = Modifier,
+                  modifier = Modifier.fillMaxSize(),
                   verticalArrangement = Arrangement.Center,
                   horizontalAlignment = Alignment.CenterHorizontally
               ) {

@@ -17,11 +17,14 @@ class UserViewModel(
     val uiState: StateFlow<`UsersUiState$Generated`> = _uiState.asStateFlow()
 
     init {
-        postUiState(
-            newUiState = `UsersUiState$Generated`.SuccessState(
-                data = usersListRepository.getUsersList()
+        viewModelScope.launch {
+            delay(3000)
+            postUiState(
+                newUiState = `UsersUiState$Generated`.SuccessState(
+                    data = usersListRepository.getUsersList()
+                )
             )
-        )
+        }
     }
 
     private fun postUiState(newUiState: `UsersUiState$Generated`) {
