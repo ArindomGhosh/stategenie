@@ -1,0 +1,42 @@
+apply plugin: 'maven-publish'
+
+afterEvaluate {
+    task sourceJar(type: Jar){
+        from sourceSets.main.java.srcDirs
+        classifier "sources"
+    }
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = rootProject.ext.artifactoryGroup
+                artifactId = project.name
+                version = rootProject.ext.versionName
+                pom {
+                    name = "StateGenie"
+                    description = "Generate extensive sealed interface"
+                    url= "https://github.com/ArindomGhosh/StateGenie"
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers{
+                        developer {
+                            id = "ArindomGhosh"
+                            name = "Arindom Ghosh"
+                            email = "arindomghosh23@gmail.com"
+                        }
+                    }
+                    scm {
+                        connection = "scm:git:github.com/ArindomGhosh/StateGenie.git"
+                        developerConnection = "scm:git:ssh://github.com/ArindomGhosh/StateGenie.git"
+                        url = "https://github.com/ArindomGhosh/StateGenie/tree/main"
+                    }
+                }
+                from components.java
+                artifact(sourceJar)
+            }
+        }
+    }
+}

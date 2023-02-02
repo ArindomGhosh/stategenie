@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-package com.arindom.stategenie.ui.theme
+package com.arindom.stategenie.processors
 
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Shapes
-import androidx.compose.ui.unit.dp
+import com.google.devtools.ksp.processing.SymbolProcessor
+import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
+import com.google.devtools.ksp.processing.SymbolProcessorProvider
 
-val Shapes = Shapes(
-    small = RoundedCornerShape(4.dp),
-    medium = RoundedCornerShape(4.dp),
-    large = RoundedCornerShape(0.dp)
-)
+class StateGenieSymbolProcessorProvider : SymbolProcessorProvider {
+    override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor {
+        return StateGenieProcessor(
+            logger = environment.logger,
+            codeGenerator = environment.codeGenerator,
+            options = environment.options
+        )
+    }
+}

@@ -1,8 +1,8 @@
 package com.arindom.stategenie.presentation
 
-import com.arindom.stategenie.annotations.GenieState
+import com.arindom.stategenie.annotations.StateGenie
 
-@GenieState(
+@StateGenie(
     rootName = "UsersUiState"
 )
 interface UsersUiState: BaseUIiState<List<User>>

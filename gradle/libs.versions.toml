@@ -12,6 +12,7 @@ junit4 = "4.13.2"
 ksp = "1.7.20-1.0.7"
 kotlinPoet = "1.12.0"
 kotlinCompileTest = "1.4.9"
+axion = "1.14.0"
 koinCompose = "3.4.1"
 koin = "3.3.2"
 gson = "2.10.1"
@@ -60,5 +61,6 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+axion = { id = "pl.allegro.tech.build.axion-release", version.ref = "axion" }
 
 
