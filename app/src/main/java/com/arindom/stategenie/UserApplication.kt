@@ -6,11 +6,11 @@ import com.arindom.stategenie.di.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class UsersApplication: Application() {
+class UserApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            androidContext(this@UsersApplication)
+            androidContext(this@UserApplication)
             modules(listOf(networkModule, appModule))
         }
     }

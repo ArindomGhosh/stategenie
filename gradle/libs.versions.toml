@@ -15,7 +15,6 @@ kotlinCompileTest = "1.4.9"
 axion = "1.14.0"
 koinCompose = "3.4.1"
 koin = "3.3.2"
-gson = "2.10.1"
 retrofit = "2.6.0"
 gsonConverter = "2.9.0"
 coil = "2.2.2"
@@ -40,8 +39,6 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCompose" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
-
-gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gsonConverter" }

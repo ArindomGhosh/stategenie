@@ -2,14 +2,12 @@ package com.arindom.stategenie.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.arindom.stategenie.UsersListRepository
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.delay
+import com.arindom.stategenie.repository.UserListRepository
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class UserViewModel(
-    usersListRepository: UsersListRepository
+    userListRepository: UserListRepository
 ) : ViewModel() {
 
     private val _uiState =
@@ -19,7 +17,7 @@ class UserViewModel(
     init {
         viewModelScope.launch {
             postUiState(newUiState = `UsersUiState$Generated`.LoadingState)
-            usersListRepository.getGithubUserList()
+            userListRepository.getGithubUserList()
                 .catch {
                     postUiState(
                         newUiState = `UsersUiState$Generated`.ErrorState(

@@ -1,11 +1,9 @@
 package com.arindom.stategenie.di
 
-import com.arindom.stategenie.UsersListRepository
-import com.arindom.stategenie.data.UserListService
+import com.arindom.stategenie.repository.UserListRepository
+import com.arindom.stategenie.data.network.UserListService
 import com.arindom.stategenie.presentation.UserViewModel
 import okhttp3.OkHttpClient
-import org.koin.android.ext.koin.androidApplication
-import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -17,7 +15,7 @@ val networkModule = module {
 }
 
 val appModule = module {
-    single { UsersListRepository(androidContext(), get()) }
+    single { UserListRepository(get()) }
     viewModel { UserViewModel(get()) }
 }
 

@@ -8,25 +8,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.arindom.stategenie.Greeting
-import com.arindom.stategenie.data.model.UserResponse
+import com.arindom.stategenie.data.model.User
 
 @Composable
 fun UserInfo(
     modifier: Modifier,
-    userResponse: UserResponse
+    user: User
 ) {
     Row(
         modifier = modifier
             .padding(20.dp)
     ) {
         AsyncImage(
-            model = userResponse.avatar_url,
+            model = user.avatar_url,
             contentDescription = "User Image",
             modifier = modifier.size(40.dp, 40.dp)
         )
         Text(
-            text = userResponse.login,
+            text = user.login,
             fontSize = 16.sp,
             modifier = modifier
                 .padding(start = 30.dp)
@@ -39,7 +38,7 @@ fun UserInfo(
 fun UserInfoPreview() {
     UserInfo(
         modifier = Modifier,
-        userResponse = UserResponse(
+        user = User(
             login = "jclarke",
             avatar_url = "https://avatars.githubusercontent.com/u/2022?v=4"
         )
