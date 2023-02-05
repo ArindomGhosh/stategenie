@@ -26,8 +26,7 @@ scmVersion {
         pushTagsOnly.set(true)
     }
 }
-val artifactoryUrl: String by project
-print(artifactoryUrl)
+
 ext.apply {
     set("artifactoryGroup", "com.arindom.stategenie")
     set("versionName", scmVersion.version)
