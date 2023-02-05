@@ -42,12 +42,12 @@ afterEvaluate {
     }
 
     artifactory {
-//        contextUrl = "${artifactoryUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
-        /*publish {
+        contextUrl = artifactoryUrl ?: System.env.JF_ARTIFACTORY_URL   //The base Artifactory URL if not overridden by the publisher/resolver
+        publish {
             repository {
                 repoKey = 'test-gradle-release'
-                username = "${artifactoryUserName}"
-                password = "${artifactoryPassword}"
+                username = artifactoryUserName ?: System.env.JF_USER_NAME
+                password = artifactoryPassword ?: System.env.JF_PASSWORD
                 maven = true
 
             }
@@ -56,6 +56,6 @@ afterEvaluate {
                 publishArtifacts  = true
                 publishPom = true
             }
-        }*/
+        }
     }
 }
