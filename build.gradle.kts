@@ -33,12 +33,13 @@ ext.apply {
     set("versionCode", getVersionCode(scmVersion.version))
 //    set("versionName", "0.1.0-beta")
 //    set("versionCode", "0.1.0")
-    if (System.getenv()["JF_ARTIFACTORY_URL"] != null)
-        set("artifactoryUrl", System.getenv()["JF_ARTIFACTORY_URL"])
-    if (System.getenv()["JF_USER_NAME"] != null)
-        set("artifactoryUserName", System.getenv()["JF_USER_NAME"])
-    if (System.getenv()["JF_PASSWORD"] != null)
-        set("artifactoryPassword", System.getenv()["JF_PASSWORD"])
+    if (System.getenv("JF_ARTIFACTORY_URL") != null)
+        println(System.getenv("JF_ARTIFACTORY_URL"))
+        set("artifactoryUrl", System.getenv("JF_ARTIFACTORY_URL"))
+    if (System.getenv("JF_USER_NAME") != null)
+        set("artifactoryUserName", System.getenv("JF_USER_NAME"))
+    if (System.getenv("JF_PASSWORD") != null)
+        set("artifactoryPassword", System.getenv("JF_PASSWORD"))
 }
 
 fun getVersionCode(version: String): Int {
