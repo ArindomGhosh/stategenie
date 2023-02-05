@@ -2,8 +2,6 @@ apply plugin: "com.jfrog.artifactory"
 apply plugin: 'maven-publish'
 
 afterEvaluate {
-    println("artifactoryUrl ${System.getenv("ARTIFACTORY_URL")}")
-    println("artifactoryUrl $artifactoryUrl")
     task sourceJar(type: Jar) {
         from sourceSets.main.java.srcDirs
         classifier "sources"

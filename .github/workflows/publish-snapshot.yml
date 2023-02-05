@@ -41,14 +41,4 @@ jobs:
       - name: Release build
         run: ./gradlew assemble --scan
       - name: Publish to Maven Central
-        uses: jfrog/setup-jfrog-cli@v3
-        env:
-          JF_URL: ${{ secrets.JF_ARTIFACTORY_URL }}
-          JF_USER: ${{ secrets.JF_USER_NAME }}
-          JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
-      - name: Check version
-        run: |
-          echo ${{ secrets.JF_ARTIFACTORY_URL }}
-          echo ${{ secrets.JF_USER_NAME }}
-          echo ${{ secrets.JF_PASSWORD }}
-          jf rt ping
+        run: ./gradlew artifactoryPublish --scan
