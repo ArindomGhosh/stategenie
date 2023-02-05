@@ -2,7 +2,11 @@ apply plugin: "com.jfrog.artifactory"
 apply plugin: 'maven-publish'
 
 afterEvaluate {
-    task sourceJar(type: Jar){
+    if (System.env.JF_ARTIFACTORY_URL != null) artifactoryUrl = System.env.JF_ARTIFACTORY_URL
+    if (System.env.JF_USER_NAME != null) artifactoryUserName = System.env.JF_ARTIFACTORY_URL
+    if (System.env.JF_PASSWORD != null) artifactoryPassword = System.env.JF_ARTIFACTORY_URL
+
+    task sourceJar(type: Jar) {
         from sourceSets.main.java.srcDirs
         classifier "sources"
     }
@@ -15,14 +19,14 @@ afterEvaluate {
                 pom {
                     name = "StateGenie"
                     description = "Generate extensive sealed interface"
-                    url= "https://github.com/ArindomGhosh/StateGenie"
+                    url = "https://github.com/ArindomGhosh/StateGenie"
                     licenses {
                         license {
                             name = 'The Apache License, Version 2.0'
                             url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
                         }
                     }
-                    developers{
+                    developers {
                         developer {
                             id = "ArindomGhosh"
                             name = "Arindom Ghosh"
@@ -42,18 +46,20 @@ afterEvaluate {
     }
 
     artifactory {
-        contextUrl = artifactoryUrl ?: System.env.JF_ARTIFACTORY_URL   //The base Artifactory URL if not overridden by the publisher/resolver
+        contextUrl = artifactoryUrl ?: System.env.JF_ARTIFACTORY_URL
+        //The base Artifactory URL if not overridden by the publisher/resolver
+
         publish {
             repository {
                 repoKey = 'test-gradle-release'
-                username = artifactoryUserName ?: System.env.JF_USER_NAME
-                password = artifactoryPassword ?: System.env.JF_PASSWORD
+                username = artifactoryUserName
+                password = artifactoryPassword
                 maven = true
 
             }
             defaults {
                 publications('release')
-                publishArtifacts  = true
+                publishArtifacts = true
                 publishPom = true
             }
         }
