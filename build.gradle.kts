@@ -31,6 +31,12 @@ ext.apply {
     set("artifactoryGroup", "com.arindom.stategenie")
     set("versionName", scmVersion.version)
     set("versionCode", getVersionCode(scmVersion.version))
+    if (System.getenv("ARTIFACTORY_URL") != null)
+        set("artifactoryUrl", System.getenv("ARTIFACTORY_URL"))
+    if (System.getenv("USER_NAME") != null)
+        set("artifactoryUserName", System.getenv("USER_NAME"))
+    if (System.getenv("PASSWORD") != null)
+        set("artifactoryPassword", System.getenv("PASSWORD"))
 }
 
 fun getVersionCode(version: String): Int {

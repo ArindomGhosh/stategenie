@@ -2,9 +2,6 @@ apply plugin: "com.jfrog.artifactory"
 apply plugin: 'maven-publish'
 
 afterEvaluate {
-    if (System.getenv("ARTIFACTORY_URL") != null) artifactoryUrl = System.getenv("ARTIFACTORY_URL")
-    if (System.getenv("USER_NAME") != null) artifactoryUserName = System.getenv("USER_NAME")
-    if (System.getenv("PASSWORD") != null) artifactoryPassword = System.getenv("PASSWORD")
     println("artifactoryUrl ${System.getenv("ARTIFACTORY_URL")}")
     println("artifactoryUrl $artifactoryUrl")
     task sourceJar(type: Jar) {
