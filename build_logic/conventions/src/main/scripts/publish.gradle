@@ -1,3 +1,4 @@
+apply plugin: "com.jfrog.artifactory"
 apply plugin: 'maven-publish'
 
 afterEvaluate {
@@ -36,6 +37,24 @@ afterEvaluate {
                 }
                 from components.java
                 artifact(sourceJar)
+            }
+        }
+    }
+
+    artifactory {
+        contextUrl = "${artifactoryUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
+        publish {
+            repository {
+                repoKey = 'test-gradle-release'
+                username = "${artifactoryUserName}"
+                password = "${artifactoryPassword}"
+                maven = true
+
+            }
+            defaults {
+                publications('release')
+                publishArtifacts  = true
+                publishPom = true
             }
         }
     }

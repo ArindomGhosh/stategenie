@@ -1,5 +1,11 @@
 buildscript {
+    repositories {
+        mavenCentral()
+    }
 
+    dependencies {
+        classpath("org.jfrog.buildinfo:build-info-extractor-gradle:4+")
+    }
 }
 
 plugins {
@@ -20,10 +26,16 @@ scmVersion {
         pushTagsOnly.set(true)
     }
 }
-
-ext["artifactoryGroup"] = "com.arindom.stategenie"
-ext["versionName"] = scmVersion.version
-ext["versionCode"] = getVersionCode(scmVersion.version)
+val artifactoryUrl: String by project
+print(artifactoryUrl)
+ext.apply {
+    set("artifactoryGroup", "com.arindom.stategenie")
+    set("versionName", scmVersion.version)
+    set("versionCode", getVersionCode(scmVersion.version))
+//    set("versionName", "0.1.0-beta")
+//    set("versionCode", "0.1.0")
+    set("artifactoryUrl", artifactoryUrl)
+}
 
 fun getVersionCode(version: String): Int {
     val tokens = version.split(".", "-")
