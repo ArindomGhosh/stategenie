@@ -47,7 +47,7 @@ afterEvaluate {
 
         publish {
             repository {
-                repoKey = 'test-gradle-release'
+                repoKey = repositoryKey
                 username = artifactoryUserName
                 password = artifactoryPassword
                 maven = true

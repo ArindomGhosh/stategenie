@@ -37,6 +37,8 @@ ext.apply {
         set("artifactoryUserName", System.getenv("USER_NAME"))
     if (System.getenv("PASSWORD") != null)
         set("artifactoryPassword", System.getenv("PASSWORD"))
+    if(System.getenv("REPOSITORY_KEY")!=null)
+        set("repositoryKey", System.getenv("REPOSITORY_KEY"))
 }
 
 fun getVersionCode(version: String): Int {

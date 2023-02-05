@@ -3,12 +3,16 @@ env:
   ARTIFACTORY_URL:  ${{ secrets.JF_ARTIFACTORY_URL }}
   USER_NAME: ${{ secrets.JF_USER_NAME }}
   PASSWORD: ${{ secrets.JF_PASSWORD }}
+  REPOSITORY_KEY: ${{ secrets.JF_REPOSITORY_KEY }}
 
 on:
   push:
     branches:
       - main
-    workflow_dispatch:
+  release:
+    types: [released]
+
+  workflow_dispatch:
 
 jobs:
   build:
