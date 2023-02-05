@@ -2,10 +2,10 @@ apply plugin: "com.jfrog.artifactory"
 apply plugin: 'maven-publish'
 
 afterEvaluate {
-    if (System.env.JF_ARTIFACTORY_URL != null) artifactoryUrl = System.env.JF_ARTIFACTORY_URL
-    if (System.env.JF_USER_NAME != null) artifactoryUserName = System.env.JF_ARTIFACTORY_URL
-    if (System.env.JF_PASSWORD != null) artifactoryPassword = System.env.JF_ARTIFACTORY_URL
-
+    if (System.getenv("JF_ARTIFACTORY_URL") != null) artifactoryUrl = System.getenv("JF_ARTIFACTORY_URL")
+    if (System.getenv("JF_ARTIFACTORY_URL") != null) artifactoryUserName = System.getenv("JF_USER_NAME")
+    if (System.getenv("JF_PASSWORD") != null) artifactoryPassword = System.getenv("JF_PASSWORD")
+    println("artifactoryUrl $artifactoryUrl")
     task sourceJar(type: Jar) {
         from sourceSets.main.java.srcDirs
         classifier "sources"
@@ -46,7 +46,7 @@ afterEvaluate {
     }
 
     artifactory {
-        contextUrl = artifactoryUrl ?: System.env.JF_ARTIFACTORY_URL
+        contextUrl = artifactoryUrl
         //The base Artifactory URL if not overridden by the publisher/resolver
 
         publish {
