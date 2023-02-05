@@ -1,4 +1,8 @@
 name: Publish Snapshot
+env:
+  ARTIFACTORY_URL:  ${{ secrets.JF_ARTIFACTORY_URL }}
+  USER_NAME: ${{ secrets.JF_USER_NAME }}
+  PASSWORD: ${{ secrets.JF_PASSWORD }}
 
 on:
   push:
