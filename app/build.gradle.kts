@@ -50,12 +50,12 @@ android {
 }
 
 dependencies {
-    implementation(project(":genie-annotations"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     testImplementation(libs.junit4)
     androidTestImplementation(libs.androidx.test.ext)
     androidTestImplementation(libs.androidx.test.espresso.core)
+    implementation(project(":genie-annotations"))
     ksp(project(":genie-processors"))
 }
