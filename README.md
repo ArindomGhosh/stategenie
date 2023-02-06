@@ -5,23 +5,34 @@ It gives you the flexibility of reusing a base model in different scenarios whil
 models over them based on your requirements reducing the repeated boiler plate code.
 
 ### Gradle Setup
-1. Enable KSP in your app or module build.gradle.kts:
+1. Enable KSP in your app or module `build.gradle.kts`:
 ```kotlin
 plugins {
     id("com.google.devtools.ksp") version "1.7.20-1.0.7"
 }
 ```
 
-2. Add dependencies in your app or module level build.gradle.kts as shown:
+2. Add repository in repositories to resolve dependencies `settings.gradle.kts`:
+```kotlin
+dependencyResolutionManagement {
+    repositories {
+        maven {
+            url = URI("https://arindomghosh.jfrog.io/artifactory/punkypumpkin")
+        }
+    }
+}
+```
+
+3. Add dependencies in your app or module level `build.gradle.kts` as shown:
 ```kotlin
 dependencies{
   val stateGenieVersion = CHECK_THE_RELEASES
-  implementation("com.github.ArindomGhosh.StateGenie:genie-annotations:stateGenieVersion")
-  ksp("com.github.ArindomGhosh.StateGenie:genie-processors:stateGenieVersion")
+  implementation("com.arindom.stategenie:genie-annotations:$stateGenieVersion")
+  ksp("com.arindom.stategenie:genie-processors:$stateGenieVersion")
 }
 
 ```
-3. Android 
+4. Android 
   - build.gradle.kts (app level)
     ```kotlin 
     kotlin {
