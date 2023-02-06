@@ -1,4 +1,4 @@
-name: Android CI
+name: Publish
 env:
   ARTIFACTORY_URL:  ${{ secrets.JF_ARTIFACTORY_URL }}
   USER_NAME: ${{ secrets.JF_USER_NAME }}
@@ -8,17 +8,15 @@ env:
 on:
   push:
     branches:
-      - 'feature/**'
-      - 'bugfix/**'
-      - 'hotfix/**'
+      - main
+  release:
+    types: [released]
 
   workflow_dispatch:
-
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
       - name: set up JDK 11
@@ -32,3 +30,19 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
+
+  publish-snapshot:
+    needs: ["build"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 11
+          cache: gradle
+      - name: Release build
+        run: ./gradlew assemble --scan
+      - name: Publish to Maven Central
+        run: ./gradlew artifactoryPublish --scan

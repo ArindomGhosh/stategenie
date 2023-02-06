@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
+project.version = rootProject.ext["versionName"] as String
+
 android {
     namespace = "com.arindom.stategenie"
     compileSdk = 33
@@ -50,7 +52,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":genie-annotations"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -62,5 +63,6 @@ dependencies {
     testImplementation(libs.junit4)
     androidTestImplementation(libs.androidx.test.ext)
     androidTestImplementation(libs.androidx.test.espresso.core)
+    implementation(project(":genie-annotations"))
     ksp(project(":genie-processors"))
 }

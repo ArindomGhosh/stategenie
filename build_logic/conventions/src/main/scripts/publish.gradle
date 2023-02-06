@@ -1,7 +1,8 @@
+apply plugin: "com.jfrog.artifactory"
 apply plugin: 'maven-publish'
 
 afterEvaluate {
-    task sourceJar(type: Jar){
+    task sourceJar(type: Jar) {
         from sourceSets.main.java.srcDirs
         classifier "sources"
     }
@@ -14,14 +15,14 @@ afterEvaluate {
                 pom {
                     name = "StateGenie"
                     description = "Generate extensive sealed interface"
-                    url= "https://github.com/ArindomGhosh/StateGenie"
+                    url = "https://github.com/ArindomGhosh/StateGenie"
                     licenses {
                         license {
                             name = 'The Apache License, Version 2.0'
                             url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
                         }
                     }
-                    developers{
+                    developers {
                         developer {
                             id = "ArindomGhosh"
                             name = "Arindom Ghosh"
@@ -36,6 +37,26 @@ afterEvaluate {
                 }
                 from components.java
                 artifact(sourceJar)
+            }
+        }
+    }
+
+    artifactory {
+        contextUrl = artifactoryUrl
+        //The base Artifactory URL if not overridden by the publisher/resolver
+
+        publish {
+            repository {
+                repoKey = repositoryKey
+                username = artifactoryUserName
+                password = artifactoryPassword
+                maven = true
+
+            }
+            defaults {
+                publications('release')
+                publishArtifacts = true
+                publishPom = true
             }
         }
     }
