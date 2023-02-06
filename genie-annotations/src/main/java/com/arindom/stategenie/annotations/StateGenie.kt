@@ -17,16 +17,19 @@
 package com.arindom.stategenie.annotations
 
 /**
- * [StateGenie] triggers our implementation SymbolProcessor from Kotlin Symbol Processor(KSP) where validate the Symbols for the following:
+ * [StateGenie] triggers our implementation of SymbolProcessor from Kotlin Symbol Processor(KSP)
+ * where we validate the Symbols for the following:
+ * ```
  * is `resolvable` &&
  * is `KSClassDeclaration` &&
  * is `classKind == ClassKind.INTERFACE` &&
  * is modifiers does not contains `Modifier.FUN`.
+ *```
  *
- * After the validation each symbols are processed by an implementation of `KSVisitor` provided by KSP
- * to create the [sealed class] for the respective symbols.
+ * After validation each symbols are processed by an implementation of `KSVisitor` provided by KSP
+ * to create the [sealed interface] for the respective symbols.
  *
- * ### Following source code:
+ * ### following source code:
  * ```kotlin
  * @StateGenie(
  *   rootName = "NewUiSate",
@@ -49,7 +52,7 @@ package com.arindom.stategenie.annotations
  *   val error: Throwable
  * }
  * ```
- * ### Would generate:
+ * ### would generate:
  * ```kotlin
  * public sealed interface NewUiSate : Parcelable {
  *   @Parcelize
@@ -66,6 +69,38 @@ package com.arindom.stategenie.annotations
  *   ) : NewUiSate
  * }
  * ```
+ *
+ * @param rootName [String] The name for the generated sealed interface. It's optional if provided would be used
+ * to generate the name for the sealed interface or the th name of the interface is used.
+ *
+ * e.g.:
+ *
+ * ### Scenario 1:
+ * ```kotlin
+ * @StateGenie(
+ *   rootName = "NewUiSate",
+ *   isParcelable = true
+ * )
+ * interface UiState
+ * ```
+ * ### would generate
+ * ```kotlin
+ * public sealed interface NewUiSate : Parcelable
+ * ```
+ * ### Scenario 2:
+ * ```kotlin
+ * @StateGenie(
+ *   isParcelable = true
+ * )
+ * interface UiState
+ * ```
+ * ### would generate
+ *
+ * ```kotlin
+ * public sealed interface `UiState$Generated` : Parcelable
+ * ```
+ *
+ * @param isParcelable [Boolean] This is used to make the generated state Parcelable, by default its set to false.
  * */
 
 @Retention(
@@ -87,7 +122,8 @@ annotation class StateGenie(
 
 /**
  *
- * [ToState] is to store information about the individual state for a set of states.
+ * [ToState] is used to store information about the individual state for a set of states.
+ *
  * They are used with properties of the given interface representing the complete set of states e.g:
  * ```kotlin
  * @ToState(
@@ -99,32 +135,35 @@ annotation class StateGenie(
  * 1) [data]: represented state as a wrapper for given DataType.
  * 2) [object]: represent the state.
  *
- * ### Following source code:
+ * ### following source code:
  * ```kotlin
  * @ToState(
  *     stateName = "Error"
  * )
  * val error: Throwable
  * ```
- * ### Would generate:
+ * ### would generate:
  * ```kotlin
  * public data class ErrorState(
  *     public final val error: Throwable,
  * )
  * ```
  *
- * ### Following source code:
+ * ### following source code:
  * ```kotlin
  * @ToState(
  *     stateName = "Loading"
  * )
  * val loading: Unit
  * ```
- * ### Would generate:
+ * ### would generate:
  * ```kotlin
  * @Parcelize
  * public object LoadingState : NewUiSate
  * ```
+ *
+ * @param stateName [String] This is use to set the name of the individual sub state appended by "State".
+ * It's optional and if not provided the name of the property is used in place.
  *
  * */
 @Retention(
