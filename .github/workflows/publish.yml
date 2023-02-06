@@ -45,4 +45,6 @@ jobs:
       - name: Release build
         run: ./gradlew assemble --scan
       - name: Publish to Maven Central
-        run: ./gradlew artifactoryPublish --scan
+        run: |
+          git fetch --tags --unshallow
+          ./gradlew artifactoryPublish --scan
