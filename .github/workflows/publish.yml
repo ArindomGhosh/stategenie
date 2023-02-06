@@ -1,4 +1,4 @@
-name: Publish Snapshot
+name: Publish
 env:
   ARTIFACTORY_URL:  ${{ secrets.JF_ARTIFACTORY_URL }}
   USER_NAME: ${{ secrets.JF_USER_NAME }}
