@@ -24,7 +24,6 @@ scmVersion {
 
     repository {
         pushTagsOnly.set(true)
-        remote.set("pushback")
     }
 }
 
