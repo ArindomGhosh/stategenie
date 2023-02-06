@@ -42,6 +42,11 @@ ext.apply {
         set("repositoryKey", System.getenv("REPOSITORY_KEY"))
 }
 
+allprojects {
+    project.version = rootProject.ext["versionName"] as String
+}
+
+
 fun getVersionCode(version: String): Int {
     val tokens = version.split(".", "-")
     val major = tokens[0].toInt()
