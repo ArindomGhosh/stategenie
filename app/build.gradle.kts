@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
+project.version = rootProject.ext["versionName"] as String
+
 android {
     namespace = "com.arindom.stategenie"
     compileSdk = 33
