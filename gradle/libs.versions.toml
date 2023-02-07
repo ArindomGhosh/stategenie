@@ -15,6 +15,7 @@ kotlinCompileTest = "1.4.9"
 axion = "1.14.0"
 spotless = "6.10.0"
 jfrog = "4+"
+kotlinBinaryValidatory = "0.12.1"
 
 
 [libraries]
@@ -58,5 +59,6 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 axion = { id = "pl.allegro.tech.build.axion-release", version.ref = "axion" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+kotlinBinaryCompatibilityValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "kotlinBinaryValidatory" }
 
 
