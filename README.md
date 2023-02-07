@@ -23,7 +23,7 @@ dependencyResolutionManagement {
 }
 ```
 
-3. Add dependencies in your app or module level `build.gradle.kts` as shown:
+3. Add dependencies in your app or module level `build.gradle.kts`
 ```kotlin
 dependencies{
   val stateGenieVersion = CHECK_THE_RELEASES
