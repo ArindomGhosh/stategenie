@@ -52,6 +52,8 @@ jobs:
         with:
           name: build-reports
           path: app/build/reports
+      - name: Generate Documentation
+        run: ./gradlew sourceJar javadocJar --scan
 
 
   publish:

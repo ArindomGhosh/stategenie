@@ -1,11 +1,30 @@
-apply plugin: "com.jfrog.artifactory"
+apply plugin: 'com.jfrog.artifactory'
 apply plugin: 'maven-publish'
+apply plugin: rootProject.libs.plugins.dokka.get().pluginId
+
+task sourceJar(type: Jar) {
+    getArchiveClassifier().set('sources')
+    from sourceSets.main.java.srcDirs
+}
+
+tasks.withType(dokkaHtml.getClass()).configureEach {
+    pluginsMapConfiguration.set(
+            ["org.jetbrains.dokka.base.DokkaBase": """{ "separateInheritedMembers": true}"""]
+    )
+}
+
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    getArchiveClassifier().set('javadoc')
+    from dokkaJavadoc.outputDirectory
+}
+
+artifacts {
+    archives sourceJar
+    archives javadocJar
+}
 
 afterEvaluate {
-    task sourceJar(type: Jar) {
-        from sourceSets.main.java.srcDirs
-        classifier "sources"
-    }
+
     publishing {
         publications {
             release(MavenPublication) {
@@ -37,6 +56,7 @@ afterEvaluate {
                 }
                 from components.java
                 artifact(sourceJar)
+                artifact(javadocJar)
             }
         }
     }
