@@ -59,11 +59,11 @@ jobs:
           pwd
           ls -a
 
-      - name: Deploy to Github Pages
+      - name: Deploy Annotation Doc to Github Pages
         uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: gh-pages
-          build_dir: '**/build/dokka'
+          build_dir: '**/genie-annotations/build/dokka'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
