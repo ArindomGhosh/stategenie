@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.arindom.stategenie.presentation
 
 import android.os.Bundle
@@ -36,51 +35,51 @@ import com.arindom.stategenie.ui.theme.StateGenieTheme
 import org.koin.androidx.compose.get
 
 class UserListActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            StateGenieTheme {
-                // A surface container using the 'background' color from the theme
-                UserListWidget()
-            }
-        }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContent {
+      StateGenieTheme {
+        // A surface container using the 'background' color from the theme
+        UserListWidget()
+      }
     }
+  }
 }
 
 @Composable
 fun UserListWidget(
-    viewModel: UserViewModel = get()
+  viewModel: UserViewModel = get()
 ) {
-    val content by viewModel.uiState.collectAsState()
-    when (content) {
-        is `UsersUiState$Generated`.SuccessState -> {
-            val users = (content as `UsersUiState$Generated`.SuccessState).data
-            LazyColumn {
-                items(users) {
-                    UserInfo(modifier = Modifier, user = it)
-                    Divider(color = Color.LightGray)
-                }
-            }
+  val content by viewModel.uiState.collectAsState()
+  when (content) {
+    is `UsersUiState$Generated`.SuccessState -> {
+      val users = (content as `UsersUiState$Generated`.SuccessState).data
+      LazyColumn {
+        items(users) {
+          UserInfo(modifier = Modifier, user = it)
+          Divider(color = Color.LightGray)
         }
-        is `UsersUiState$Generated`.LoadingState -> {
-            ProgressWidget()
-        }
-        is `UsersUiState$Generated`.ErrorState -> {
-            val error = (content as `UsersUiState$Generated`.ErrorState).error
-            ErrorWidget(modifier = Modifier, message = error.message ?: "Something went wrong, please try again!")
-        }
+      }
     }
+    is `UsersUiState$Generated`.LoadingState -> {
+      ProgressWidget()
+    }
+    is `UsersUiState$Generated`.ErrorState -> {
+      val error = (content as `UsersUiState$Generated`.ErrorState).error
+      ErrorWidget(modifier = Modifier, message = error.message ?: "Something went wrong, please try again!")
+    }
+  }
 }
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+  Text(text = "Hello $name!")
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    StateGenieTheme {
-        Greeting("Android")
-    }
+  StateGenieTheme {
+    Greeting("Android")
+  }
 }
