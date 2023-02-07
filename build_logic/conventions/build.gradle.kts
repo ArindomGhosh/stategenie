@@ -36,6 +36,10 @@ gradlePlugin {
             id = "com.arindom.stategenie.android.compose.application"
             implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
+        register("libraryPlugin"){
+            id = "com.arindom.stategenie.library"
+            implementationClass = "LibraryConventionPlugin"
+        }
     }
 }
 

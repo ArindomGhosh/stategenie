@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.arindom.stategenie.presentation
 
 import android.os.Parcelable
@@ -24,77 +23,77 @@ import com.arindom.stategenie.annotations.ToState
 import kotlinx.parcelize.Parcelize
 
 interface BaseUIiState<T : Any> {
-    @ToState(
-        stateName = "Success"
-    )
-    val data: T
+  @ToState(
+    stateName = "Success"
+  )
+  val data: T
 
-    @ToState(
-        stateName = "Loading"
-    )
-    val loading: Unit
+  @ToState(
+    stateName = "Loading"
+  )
+  val loading: Unit
 
-    @ToState(
-        stateName = "Error"
-    )
-    val error: Throwable
+  @ToState(
+    stateName = "Error"
+  )
+  val error: Throwable
 }
 
 @StateGenie(
-    rootName = "NewUiSate",
-    isParcelable = true
+  rootName = "NewUiSate",
+  isParcelable = true
 )
 interface UiState : BaseUIiState<List<String>> {
-    @ToState(
-        stateName = "LoggedOut"
-    )
-    val loggedOut: Unit
+  @ToState(
+    stateName = "LoggedOut"
+  )
+  val loggedOut: Unit
 
-    @ToState(
-        stateName = "foo"
-    )
-    val foo: Boolean
+  @ToState(
+    stateName = "foo"
+  )
+  val foo: Boolean
 
-    @ToState(
-        stateName = "bar"
-    )
-    val bar: String
+  @ToState(
+    stateName = "bar"
+  )
+  val bar: String
 }
 
 @StateGenie(
-    rootName = "MovieUiState",
+  rootName = "MovieUiState"
 )
 interface MovieStates : BaseUIiState<List<String>>
 
 @Immutable
 @Parcelize
 data class DummyUiState(
-    val data: List<String>
+  val data: List<String>
 ) : Parcelable
 
 @Immutable
 data class PosterExtensive(
-    val posters: List<Poster>
+  val posters: List<Poster>
 )
 
 @Immutable
 data class Poster(
-    val name: String,
-    val poster: String,
-    val playtime: String
+  val name: String,
+  val poster: String,
+  val playtime: String
 )
 
 fun List<Poster>.toExtensive(): PosterExtensive {
-    return PosterExtensive(this)
+  return PosterExtensive(this)
 }
 
 @Stable
 @Immutable
 data class PosterDetails(
-    val name: String,
-    val release: String,
-    val playtime: String,
-    val description: String,
-    val poster: String,
-    val gif: String
+  val name: String,
+  val release: String,
+  val playtime: String,
+  val description: String,
+  val poster: String,
+  val gif: String
 )

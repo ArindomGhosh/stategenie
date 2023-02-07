@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("org.jfrog.buildinfo:build-info-extractor-gradle:4+")
+        classpath(libs.jfrog)
     }
 }
 
@@ -41,11 +41,6 @@ ext.apply {
     if (System.getenv("REPOSITORY_KEY") != null)
         set("repositoryKey", System.getenv("REPOSITORY_KEY"))
 }
-
-allprojects {
-    project.version = rootProject.ext["versionName"] as String
-}
-
 
 fun getVersionCode(version: String): Int {
     val tokens = version.split(".", "-")
