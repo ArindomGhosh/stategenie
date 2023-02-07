@@ -34,14 +34,12 @@ dependencies{
 ```
 4. Android 
 - build.gradle.kts (app level)
-```kotlin 
-
+```kotlin
 kotlin {
-    sourceSets.configureEach {
-        kotlin.srcDir("$buildDir/generated/ksp/$name/kotlin/")
-    }
+  sourceSets.configureEach {
+    kotlin.srcDir("$buildDir/generated/ksp/$name/kotlin/")
+  }
 }
-
 ```
 - build.gradle
 ```groovy
