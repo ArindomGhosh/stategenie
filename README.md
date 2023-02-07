@@ -33,27 +33,27 @@ dependencies{
 
 ```
 4. Android 
-  - build.gradle.kts (app level)
-    ```kotlin 
-    kotlin {
-        sourceSets.configureEach {
-            kotlin.srcDir("$buildDir/generated/ksp/$name/kotlin/")
-        }
-    }
-    ```
-  - build.gradle
-    ```groovy
-    android {
-      applicationVariants.all { variant ->
-         kotlin.sourceSets {
-            def name = variant.name
-            getByName(name) {
-                kotlin.srcDir("build/generated/ksp/$name/kotlin")
-            }
-         }
+- build.gradle.kts (app level)
+```kotlin 
+  kotlin {
+      sourceSets.configureEach {
+          kotlin.srcDir("$buildDir/generated/ksp/$name/kotlin/")
       }
+  }
+```
+- build.gradle
+```groovy
+  android {
+    applicationVariants.all { variant ->
+       kotlin.sourceSets {
+          def name = variant.name
+          getByName(name) {
+              kotlin.srcDir("build/generated/ksp/$name/kotlin")
+          }
+       }
     }
-    ```
+  }
+```
 
 ## Usage
 

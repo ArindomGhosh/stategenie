@@ -44,7 +44,7 @@ jobs:
         run: ./gradlew apiCheck
 
       - name: Run Test
-        run: ./gradlew :genie-processors:test
+        run: ./gradlew test
 
       - name: Upload build reports
         if: always()
