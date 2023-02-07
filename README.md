@@ -35,24 +35,24 @@ dependencies{
 4. Android 
 - build.gradle.kts (app level)
 ```kotlin 
-  kotlin {
-      sourceSets.configureEach {
-          kotlin.srcDir("$buildDir/generated/ksp/$name/kotlin/")
-      }
-  }
+kotlin {
+    sourceSets.configureEach {
+        kotlin.srcDir("$buildDir/generated/ksp/$name/kotlin/")
+    }
+}
 ```
 - build.gradle
 ```groovy
-  android {
-    applicationVariants.all { variant ->
-       kotlin.sourceSets {
-          def name = variant.name
-          getByName(name) {
-              kotlin.srcDir("build/generated/ksp/$name/kotlin")
-          }
-       }
-    }
-  }
+android {
+   applicationVariants.all { variant ->
+      kotlin.sourceSets {
+         def name = variant.name
+         getByName(name) {
+             kotlin.srcDir("build/generated/ksp/$name/kotlin")
+         }
+      }
+   }
+}
 ```
 
 ## Usage
@@ -101,7 +101,6 @@ public sealed interface NewUiSate {
 }
 ```
 
-
 ### Standalone State provided with `rootName` and `isParcelable`
 
 #### Your Code
@@ -145,7 +144,6 @@ public sealed interface NewUiSate : Parcelable {
 }
 ```
 
-
 ### Standalone State
 
 #### Your Code
@@ -182,7 +180,6 @@ public sealed interface `UiState$Generated` {
   ) : `UiState$Generated`
 }
 ```
-
 
 ### Standalone State provided with `isParcelable`
 
@@ -224,7 +221,6 @@ public sealed interface `UiState$Generated` : Parcelable {
 }
 ```
 
-
 ### Inherited State 
 
 #### Your Code
@@ -265,7 +261,6 @@ public sealed interface MovieUiState {
   ) : MovieUiState
 }
 ```
-
 
 ### Inherited State with custom states
 
