@@ -2,14 +2,6 @@ apply plugin: 'com.jfrog.artifactory'
 apply plugin: 'maven-publish'
 apply plugin: rootProject.libs.plugins.dokka.get().pluginId
 
-tasks.dokkaHtml.configure {
-    outputDirectory.set(file("../documentation/html"))
-}
-
-tasks.dokkaJavadoc.configure {
-    outputDirectory.set(file("../documentation/javadoc"))
-}
-
 task sourceJar(type: Jar) {
     getArchiveClassifier().set('sources')
     from sourceSets.main.java.srcDirs

@@ -1,6 +1,0 @@
-$dokka.format:javadoc-v1
-$dokka.linkExtension:html
-
-com.arindom.stategenie.processors
-com.arindom.stategenie.processors.util
-
