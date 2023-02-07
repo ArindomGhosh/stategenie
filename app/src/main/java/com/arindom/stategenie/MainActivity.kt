@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.arindom.stategenie
 
 import android.os.Bundle
@@ -29,31 +28,31 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.arindom.stategenie.ui.theme.StateGenieTheme
 
 class MainActivity : ComponentActivity() {
-    override fun     onCreate(    savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            StateGenieTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
-            }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContent {
+      StateGenieTheme {
+        // A surface container using the 'background' color from the theme
+        Surface(
+          modifier = Modifier.fillMaxSize(),
+          color = MaterialTheme.colors.background
+        ) {
+          Greeting("Android")
         }
+      }
     }
+  }
 }
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+  Text(text = "Hello $name!")
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    StateGenieTheme {
-        Greeting("Android")
-    }
+  StateGenieTheme {
+    Greeting("Android")
+  }
 }
