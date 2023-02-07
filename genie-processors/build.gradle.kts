@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.kotlin.jvm)
+    id("com.arindom.stategenie.library")
 }
 
 dependencies {
@@ -11,5 +11,3 @@ dependencies {
     testImplementation(libs.junit4)
     testImplementation(libs.kotlin.compile.testing)
 }
-
-apply(from = "${rootDir}/build_logic/conventions/src/main/scripts/publish.gradle")
