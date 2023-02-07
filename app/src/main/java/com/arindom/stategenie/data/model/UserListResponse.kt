@@ -1,6 +1,6 @@
 package com.arindom.stategenie.data.model
 
 data class User(
-    val login: String,
-    val avatar_url: String
+  val login: String,
+  val avatar_url: String
 )
