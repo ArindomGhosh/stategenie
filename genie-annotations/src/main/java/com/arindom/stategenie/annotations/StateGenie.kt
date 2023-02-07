@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http: * www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.arindom.stategenie.annotations
 
 /**
@@ -104,20 +103,20 @@ package com.arindom.stategenie.annotations
  * */
 
 @Retention(
-    AnnotationRetention.SOURCE
+  AnnotationRetention.SOURCE
 )
 @Target(
-    AnnotationTarget.CLASS
+  AnnotationTarget.CLASS
 )
 annotation class StateGenie(
-    val rootName: String = "",
-    val isParcelable: Boolean = false
+  val rootName: String = "",
+  val isParcelable: Boolean = false
 ) {
-    companion object {
+  companion object {
 
-        const val ROOT_NAME = "rootName"
-        const val IS_PARCELABLE = "isParcelable"
-    }
+    const val ROOT_NAME = "rootName"
+    const val IS_PARCELABLE = "isParcelable"
+  }
 }
 
 /**
@@ -132,8 +131,8 @@ annotation class StateGenie(
  * val error: Throwable
  * ```
  * Individual state could be either of following types:
- * 1) [data]: represented state as a wrapper for given DataType.
- * 2) [object]: represent the state.
+ * 1) data: represented state as a wrapper for given DataType.
+ * 2) object: represent the state.
  *
  * ### following source code:
  * ```kotlin
@@ -167,13 +166,13 @@ annotation class StateGenie(
  *
  * */
 @Retention(
-    AnnotationRetention.SOURCE
+  AnnotationRetention.SOURCE
 )
 @Target(
-    AnnotationTarget.PROPERTY
+  AnnotationTarget.PROPERTY
 )
 annotation class ToState(val stateName: String = "") {
-    companion object {
-        const val STATE_NAME = "stateName"
-    }
+  companion object {
+    const val STATE_NAME = "stateName"
+  }
 }

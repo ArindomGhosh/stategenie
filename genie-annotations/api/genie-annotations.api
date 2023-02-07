@@ -1,0 +1,23 @@
+public abstract interface annotation class com/arindom/stategenie/annotations/StateGenie : java/lang/annotation/Annotation {
+	public static final field Companion Lcom/arindom/stategenie/annotations/StateGenie$Companion;
+	public static final field IS_PARCELABLE Ljava/lang/String;
+	public static final field ROOT_NAME Ljava/lang/String;
+	public abstract fun isParcelable ()Z
+	public abstract fun rootName ()Ljava/lang/String;
+}
+
+public final class com/arindom/stategenie/annotations/StateGenie$Companion {
+	public static final field IS_PARCELABLE Ljava/lang/String;
+	public static final field ROOT_NAME Ljava/lang/String;
+}
+
+public abstract interface annotation class com/arindom/stategenie/annotations/ToState : java/lang/annotation/Annotation {
+	public static final field Companion Lcom/arindom/stategenie/annotations/ToState$Companion;
+	public static final field STATE_NAME Ljava/lang/String;
+	public abstract fun stateName ()Ljava/lang/String;
+}
+
+public final class com/arindom/stategenie/annotations/ToState$Companion {
+	public static final field STATE_NAME Ljava/lang/String;
+}
+

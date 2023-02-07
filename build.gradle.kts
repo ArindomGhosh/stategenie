@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("org.jfrog.buildinfo:build-info-extractor-gradle:4+")
+        classpath(libs.jfrog)
     }
 }
 
@@ -14,6 +14,7 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.kotlinBinaryCompatibilityValidator)
     alias(libs.plugins.axion)
 }
 
@@ -42,15 +43,14 @@ ext.apply {
         set("repositoryKey", System.getenv("REPOSITORY_KEY"))
 }
 
-allprojects {
-    project.version = rootProject.ext["versionName"] as String
-}
-
-
 fun getVersionCode(version: String): Int {
     val tokens = version.split(".", "-")
     val major = tokens[0].toInt()
     val minor = tokens[1].toInt()
     val patch = tokens[2].toInt()
     return major * 10000 + minor * 100 + patch
+}
+
+apiValidation{
+    ignoredProjects += listOf("app")
 }

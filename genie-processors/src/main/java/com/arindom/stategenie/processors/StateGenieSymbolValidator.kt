@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.arindom.stategenie.processors
 
 import com.google.devtools.ksp.processing.KSPLogger
@@ -24,12 +23,12 @@ import com.google.devtools.ksp.symbol.Modifier
 import com.google.devtools.ksp.validate
 
 class StateGenieSymbolValidator(
-    private val logger: KSPLogger
+  private val logger: KSPLogger
 ) {
-    fun isValid(ksAnnotated: KSAnnotated): Boolean {
-        return ksAnnotated.validate()
-                && ksAnnotated is KSClassDeclaration
-                && ksAnnotated.classKind == ClassKind.INTERFACE
-                && !ksAnnotated.modifiers.contains(Modifier.FUN)
-    }
+  fun isValid(ksAnnotated: KSAnnotated): Boolean {
+    return ksAnnotated.validate() &&
+      ksAnnotated is KSClassDeclaration &&
+      ksAnnotated.classKind == ClassKind.INTERFACE &&
+      !ksAnnotated.modifiers.contains(Modifier.FUN)
+  }
 }
