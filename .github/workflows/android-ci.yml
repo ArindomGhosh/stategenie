@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-reports
-          path: app/build/reports
+          path: '**/build/reports'
       - name: Generate Documentation
         run: ./gradlew sourceJar javadocJar --scan
 
