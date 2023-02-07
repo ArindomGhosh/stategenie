@@ -1,4 +1,4 @@
-name: Android Build
+name: Android CI
 env:
   ARTIFACTORY_URL: ${{ secrets.JF_ARTIFACTORY_URL }}
   USER_NAME: ${{ secrets.JF_USER_NAME }}
@@ -7,8 +7,8 @@ env:
 
 on:
   push:
-#    paths-ignore:
-#      - '.github/workflows/**'
+    paths-ignore:
+      - '.github/workflows/**'
   workflow_dispatch:
 
 jobs:
@@ -54,9 +54,9 @@ jobs:
 
   publish:
     name: Publish Artifacts
-#    needs: [ build ]
+    needs: [ build ]
     runs-on: ubuntu-latest
-#    if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release')
+    if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release')
     steps:
       - name: Checkout
         uses: actions/checkout@v3
