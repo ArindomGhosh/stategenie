@@ -54,7 +54,10 @@ jobs:
           path: '**/build/reports'
 
       - name: Generate Documentation
-        run: ./gradlew dokkaHtml dokkaJavadoc --scan
+        run: |
+          ./gradlew dokkaHtml dokkaJavadoc --scan
+          pwd
+          ls -a
 
       - name: Deploy to Github Pages
         uses: crazy-max/ghaction-github-pages@v3
