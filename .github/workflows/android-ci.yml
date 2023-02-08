@@ -51,8 +51,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-reports
-          path: app/build/reports
-
+          path: '**/build/reports'
 
   publish:
     name: Publish Artifacts
