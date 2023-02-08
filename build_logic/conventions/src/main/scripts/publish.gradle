@@ -13,14 +13,14 @@ tasks.withType(dokkaHtml.getClass()).configureEach {
     )
 }
 
-task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
-    getArchiveClassifier().set('javadoc')
-    from dokkaJavadoc.outputDirectory
+task htmldocJar(type: Jar, dependsOn: dokkaHtml) {
+    getArchiveClassifier().set('html')
+    from dokkaHtml.outputDirectory
 }
 
 artifacts {
     archives sourceJar
-    archives javadocJar
+    archives htmldocJar
 }
 
 afterEvaluate {
@@ -55,8 +55,10 @@ afterEvaluate {
                     }
                 }
                 from components.java
-                artifact(sourceJar)
-                artifact(javadocJar)
+                artifacts {
+                    archives sourceJar
+                    archives htmldocJar
+                }
             }
         }
     }
