@@ -53,15 +53,11 @@ jobs:
           name: build-reports
           path: '**/build/reports'
 
-#      - name: Generate Documentation
-#        run: |
-#          ./gradlew dokkaHtml dokkaJavadoc --scan
-
   publish:
     name: Publish Artifacts
-#    needs: [ build ]
+    needs: [ build ]
     runs-on: ubuntu-latest
-#    if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release')
+    if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release')
     steps:
       - name: Checkout
         uses: actions/checkout@v3

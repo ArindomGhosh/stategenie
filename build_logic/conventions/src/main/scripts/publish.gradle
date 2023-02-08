@@ -55,10 +55,8 @@ afterEvaluate {
                     }
                 }
                 from components.java
-                artifacts {
-                    archives sourceJar
-                    archives htmldocJar
-                }
+                artifact(sourceJar)
+                artifact(htmldocJar)
             }
         }
     }
