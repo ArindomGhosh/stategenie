@@ -24,7 +24,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class UserViewModel(
@@ -51,17 +53,11 @@ class UserViewModel(
   }
 
   private fun getUserList() {
-    postUiState(newUiState = `UsersUiState$Generated`.LoadingState)
+
     viewModelScope.launch {
       userListRepository.getGithubUserList()
-        .catch {
-          postUiState(
-            newUiState = `UsersUiState$Generated`.ErrorState(
-              error = Throwable(
-                message = it.localizedMessage
-              )
-            )
-          )
+        .onStart {
+          postUiState(newUiState = `UsersUiState$Generated`.LoadingState)
         }
         .onEach {
           postUiState(
@@ -72,6 +68,14 @@ class UserViewModel(
         }
         .onCompletion {
           _isRefreshing.emit(false)
+        }.catch {
+          postUiState(
+            newUiState = `UsersUiState$Generated`.ErrorState(
+              error = Throwable(
+                message = it.localizedMessage
+              )
+            )
+          )
         }
         .collect()
     }
