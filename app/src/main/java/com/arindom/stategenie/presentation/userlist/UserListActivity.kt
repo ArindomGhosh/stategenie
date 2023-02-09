@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,17 +22,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.TabRowDefaults.Divider
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import com.arindom.stategenie.presentation.widgets.ErrorWidget
 import com.arindom.stategenie.presentation.widgets.ProgressWidget
 import com.arindom.stategenie.presentation.widgets.UserInfo
@@ -59,7 +56,7 @@ fun UserListWidget(
   val content by viewModel.uiState.collectAsState()
   val refreshing by viewModel.isRefreshing.collectAsState()
   val pullRefreshState = rememberPullRefreshState(refreshing, { viewModel.refresh() })
-  Box(Modifier.pullRefresh(pullRefreshState)){
+  Box(Modifier.pullRefresh(pullRefreshState)) {
     when (content) {
       is `UsersUiState$Generated`.SuccessState -> {
         val users = (content as `UsersUiState$Generated`.SuccessState).data
