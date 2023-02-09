@@ -30,8 +30,8 @@ dependencies{
   implementation("com.arindom.stategenie:genie-annotations:$stateGenieVersion")
   ksp("com.arindom.stategenie:genie-processors:$stateGenieVersion")
 }
-
 ```
+
 4. Android 
 - build.gradle.kts (app level)
 ```kotlin

@@ -15,12 +15,17 @@
  */
 package com.arindom.stategenie.presentation.widgets
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,23 +34,32 @@ import com.arindom.stategenie.data.model.User
 
 @Composable
 fun UserInfo(
-  modifier: Modifier,
+  modifier: Modifier = Modifier,
   user: User
 ) {
-  Row(
+  Column(
     modifier = modifier
-      .padding(20.dp)
+      .fillMaxWidth()
+      .padding(2.dp)
+
   ) {
-    AsyncImage(
-      model = user.avatar_url,
-      contentDescription = "User Image",
-      modifier = modifier.size(40.dp, 40.dp)
-    )
-    Text(
-      text = user.login,
-      fontSize = 16.sp,
-      modifier = modifier
-        .padding(start = 30.dp)
+    Row(
+      verticalAlignment = Alignment.CenterVertically
+    ) {
+      AsyncImage(
+        model = user.avatar_url,
+        contentDescription = "User Image",
+        modifier = modifier.size(100.dp, 100.dp)
+      )
+      Text(
+        text = user.login,
+        fontSize = 16.sp,
+        modifier = modifier
+          .padding(start = 30.dp)
+      )
+    }
+    Divider(
+      color = Color.LightGray
     )
   }
 }
@@ -57,7 +71,7 @@ fun UserInfoPreview() {
     modifier = Modifier,
     user = User(
       login = "jclarke",
-      avatar_url = "https://avatars.githubusercontent.com/u/2022?v=4"
+      avatar_url = ""
     )
   )
 }

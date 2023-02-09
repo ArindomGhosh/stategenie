@@ -16,7 +16,7 @@
 package com.arindom.stategenie.di
 
 import com.arindom.stategenie.data.network.UserListService
-import com.arindom.stategenie.presentation.UserViewModel
+import com.arindom.stategenie.presentation.userlist.UserViewModel
 import com.arindom.stategenie.repository.UserListRepository
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
