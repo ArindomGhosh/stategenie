@@ -22,23 +22,6 @@ import com.arindom.stategenie.annotations.StateGenie
 import com.arindom.stategenie.annotations.ToState
 import kotlinx.parcelize.Parcelize
 
-interface BaseUIiState<T : Any> {
-  @ToState(
-    stateName = "Success"
-  )
-  val data: T
-
-  @ToState(
-    stateName = "Loading"
-  )
-  val loading: Unit
-
-  @ToState(
-    stateName = "Error"
-  )
-  val error: Throwable
-}
-
 @StateGenie(
   rootName = "NewUiSate",
   isParcelable = true

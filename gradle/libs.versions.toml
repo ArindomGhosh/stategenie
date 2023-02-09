@@ -16,6 +16,11 @@ axion = "1.14.0"
 spotless = "6.10.0"
 jfrog = "4+"
 kotlinBinaryValidatory = "0.12.1"
+koinCompose = "3.4.1"
+koin = "3.3.2"
+retrofit = "2.6.0"
+gsonConverter = "2.9.0"
+coil = "2.2.2"
 dokka = "1.6.0"
 
 
@@ -35,6 +40,14 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
+
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCompose" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gsonConverter" }
+
+coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
 ksp-symbol-processing = { group = "com.google.devtools.ksp", name = "symbol-processing", version.ref = "ksp" }
 ksp-symbol-processing-api = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }
