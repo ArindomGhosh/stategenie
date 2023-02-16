@@ -19,9 +19,7 @@ import com.arindom.stategenie.processors.ProgaurdConfig
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.symbol.KSAnnotation
-import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSFile
-import com.squareup.kotlinpoet.ksp.toClassName
 
 internal fun Sequence<KSAnnotation>.getAnnotation(target: String): KSAnnotation {
   return getAnnotationIfExist(target)
@@ -39,9 +37,13 @@ internal fun Sequence<KSAnnotation>.hasAnnotation(target: String): Boolean {
 }
 
 internal fun ProgaurdConfig.writeTo(codeGenerator: CodeGenerator, originatingKSFile: KSFile?) {
-  codeGenerator.createNewFile(dependencies = Dependencies(aggregating = false,
-    sources = originatingKSFile?.let { arrayOf(it) } ?: emptyArray()),
+  codeGenerator.createNewFile(
+    dependencies = Dependencies(
+      aggregating = false,
+      sources = originatingKSFile?.let { arrayOf(it) } ?: emptyArray()
+    ),
     packageName = "",
     fileName = outputFile,
-    extensionName = "").bufferedWriter().use(::writeTo)
+    extensionName = ""
+  ).bufferedWriter().use(::writeTo)
 }

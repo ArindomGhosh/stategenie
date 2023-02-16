@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,8 +18,8 @@ package com.arindom.stategenie.processors.stategenie
 import com.arindom.stategenie.annotations.StateGenie
 import com.arindom.stategenie.annotations.ToState
 import com.arindom.stategenie.processors.ProgaurdConfig
-import com.arindom.stategenie.processors.util.writeTo
 import com.arindom.stategenie.processors.util.getAnnotationIfExist
+import com.arindom.stategenie.processors.util.writeTo
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.KSPLogger
@@ -80,8 +80,12 @@ class StateGenieAnnotationVisitor(
               addType(
                 subType(
                   superType = ClassName(
-                    packageName, generatedClassName
-                  ), subTypeName = subTypeName, subTypeDef = typeDef, isParcelable = isParcelable
+                    packageName,
+                    generatedClassName
+                  ),
+                  subTypeName = subTypeName,
+                  subTypeDef = typeDef,
+                  isParcelable = isParcelable
                 )
               )
             }
@@ -95,15 +99,18 @@ class StateGenieAnnotationVisitor(
     val dependencySource = classDeclaration.containingFile
     val sources = if (dependencySource != null) arrayOf(dependencySource) else emptyArray()
     file.writeTo(
-      codeGenerator = codeGenerator, dependencies = Dependencies(
-        aggregating = true, sources = sources
+      codeGenerator = codeGenerator,
+      dependencies = Dependencies(
+        aggregating = true,
+        sources = sources
       )
     )
     subSetMap.clear()
   }
 
   private fun generateProgaurdRules(
-    targetKClssDecleration: KSClassDeclaration, extensiveName: String
+    targetKClssDecleration: KSClassDeclaration,
+    extensiveName: String
   ) {
     val progaurdConfig = ProgaurdConfig(
       targetClass = targetKClssDecleration.toClassName(),
@@ -111,7 +118,8 @@ class StateGenieAnnotationVisitor(
       extensiveName = extensiveName,
       extensiveConstructorParam = targetKClssDecleration.primaryConstructor?.parameters?.map { param ->
         param.type.resolve().toClassName().reflectionName()
-      } ?: emptyList())
+      } ?: emptyList()
+    )
 
     progaurdConfig.writeTo(
       codeGenerator,
@@ -133,8 +141,10 @@ class StateGenieAnnotationVisitor(
       }.plus("State")
 
       Pair(
-        stateName, Pair(
-          ksPropertyDeclaration.simpleName.asString(), ksPropertyDeclaration.type.resolve()
+        stateName,
+        Pair(
+          ksPropertyDeclaration.simpleName.asString(),
+          ksPropertyDeclaration.type.resolve()
         )
       )
     } else null

@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.arindom.stategenie.processors.datastategenie
 
 import com.arindom.stategenie.annotations.DataStateGenie
@@ -77,7 +76,7 @@ class DataGenieVisitor(
         getUpdateFunctions(
           uiStateClassName,
           uiStateTypeName,
-          propertyMap,
+          propertyMap
         ).forEach {
           addFunction(it)
         }
@@ -127,14 +126,18 @@ class DataGenieVisitor(
       propertyMap.forEach { (name, typeName) ->
         when (name) {
           ERROR -> {
-            add(FunSpec.builder("update${
-              name.replaceFirstChar {
-                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
-              }
-            }").addParameter(ParameterSpec(name, typeName.copy(false)))
-              .receiver(uiStateTypeName)
-              .returns(uiStateTypeName)
-              .addStatement("return this.copy($name = $name, $LOADING = false)").build())
+            add(
+              FunSpec.builder(
+                "update${
+                name.replaceFirstChar {
+                  if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                }
+                }"
+              ).addParameter(ParameterSpec(name, typeName.copy(false)))
+                .receiver(uiStateTypeName)
+                .returns(uiStateTypeName)
+                .addStatement("return this.copy($name = $name, $LOADING = false)").build()
+            )
           }
           LOADING -> {
             add(
@@ -145,15 +148,19 @@ class DataGenieVisitor(
             )
           }
           else -> {
-            add(FunSpec.builder("update${
-              name.replaceFirstChar {
-                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
-              }
-            }").addParameter(ParameterSpec(name, typeName))
-              .receiver(uiStateTypeName)
-              .returns(uiStateTypeName)
-              .addStatement("return this.copy($name = $name, error = null, $LOADING = false)")
-              .build())
+            add(
+              FunSpec.builder(
+                "update${
+                name.replaceFirstChar {
+                  if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                }
+                }"
+              ).addParameter(ParameterSpec(name, typeName))
+                .receiver(uiStateTypeName)
+                .returns(uiStateTypeName)
+                .addStatement("return this.copy($name = $name, error = null, $LOADING = false)")
+                .build()
+            )
           }
         }
       }
@@ -172,29 +179,28 @@ class DataGenieVisitor(
       .apply {
         addStatement("val $defaultValue = $sourceClassName()")
         addStatement(
-          "return ${uiStateClassName}(" +
-                  buildString {
-                    propertyMap.forEach { (variable, _) ->
-                      when (variable) {
-                        LOADING -> {
-                          append("$LOADING = $isLoadingByDefault,\n")
-                        }
-                        ERROR -> {
-                          append("$ERROR = null,\n")
-                        }
-                        else -> {
-                          append("$variable = ${defaultValue}.$variable,\n")
-                        }
-                      }
-                    }
-                  } +
-                  ")"
+          "return $uiStateClassName(" +
+            buildString {
+              propertyMap.forEach { (variable, _) ->
+                when (variable) {
+                  LOADING -> {
+                    append("$LOADING = $isLoadingByDefault,\n")
+                  }
+                  ERROR -> {
+                    append("$ERROR = null,\n")
+                  }
+                  else -> {
+                    append("$variable = $defaultValue.$variable,\n")
+                  }
+                }
+              }
+            } +
+            ")"
         )
       }
       .returns(uiStateTypeName)
       .build()
   }
-
 
   private fun getUiStateClass(
     propertyMap: Map<String, TypeName>,
@@ -204,19 +210,23 @@ class DataGenieVisitor(
     return TypeSpec.classBuilder(uiStateClassName)
       .apply {
         addModifiers(KModifier.DATA)
-        primaryConstructor(FunSpec.constructorBuilder()
-          .apply {
-            propertyMap.forEach { (name, typeName) ->
-              addParameter(ParameterSpec.builder(name, typeName)
-                .apply {
-                  if (typeName.isNullable) {
-                    defaultValue("null")
-                  }
-                }
-                .build())
+        primaryConstructor(
+          FunSpec.constructorBuilder()
+            .apply {
+              propertyMap.forEach { (name, typeName) ->
+                addParameter(
+                  ParameterSpec.builder(name, typeName)
+                    .apply {
+                      if (typeName.isNullable) {
+                        defaultValue("null")
+                      }
+                    }
+                    .build()
+                )
+              }
             }
-          }
-          .build())
+            .build()
+        )
 
         propertyMap.forEach { (name, typeName) ->
           addProperty(
@@ -254,25 +264,27 @@ class DataGenieVisitor(
             addModifiers(
               KModifier.OVERRIDE
             ).returns(Int::class)
-            propertyMap.onEachIndexed() { index, (name, typeName) ->
+            propertyMap.onEachIndexed { index, (name, typeName) ->
               if (index == 0) {
                 addStatement(
                   "var result = ${
-                    if (typeName.isNullable) {
-                      "(${name}?.hashCode() ?: 0)"
-                    } else {
-                      "${name}.hashCode()"
-                    }
+                  if (typeName.isNullable) {
+                    "($name?.hashCode() ?: 0)"
+                  } else {
+                    "$name.hashCode()"
+                  }
                   }"
                 )
               }
-              addStatement("result = $random * result + ${
+              addStatement(
+                "result = $random * result + ${
                 if (typeName.isNullable) {
-                  "(${name}?.hashCode() ?: 0)"
+                  "($name?.hashCode() ?: 0)"
                 } else {
-                  "${name}.hashCode()"
+                  "$name.hashCode()"
                 }
-              }")
+                }"
+              )
             }
             addStatement("return result")
           }
@@ -292,7 +304,8 @@ class DataGenieVisitor(
       classDeclaration.getAllProperties()
         .forEach {
           put(
-            it.simpleName.asString(), it.type.toTypeName()
+            it.simpleName.asString(),
+            it.type.toTypeName()
           )
         }
     }
