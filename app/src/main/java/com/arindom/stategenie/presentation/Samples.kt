@@ -18,6 +18,8 @@ package com.arindom.stategenie.presentation
 import android.os.Parcelable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
+import com.arindom.stategenie.annotations.DataStateConfig
+import com.arindom.stategenie.annotations.DataStateGenie
 import com.arindom.stategenie.annotations.StateGenie
 import com.arindom.stategenie.annotations.ToState
 import kotlinx.parcelize.Parcelize
@@ -72,11 +74,24 @@ fun List<Poster>.toExtensive(): PosterExtensive {
 
 @Stable
 @Immutable
-data class PosterDetails(
-  val name: String,
-  val release: String,
-  val playtime: String,
-  val description: String,
-  val poster: String,
-  val gif: String
+@DataStateGenie(
+  DataStateConfig(
+    name = "Poster",
+    errorType = UserThrowable::class,
+    isLoadingDefault = true
+  )
 )
+data class PosterDetails(
+  val name: String = "",
+  val release: String = "",
+  val playtime: String = "",
+  val description: String? = null,
+  val poster: String = "",
+  val gif: String = ""
+)
+
+sealed class UserThrowable(message: String) : Throwable(message) {
+  object NoDataFoundThrowable : UserThrowable("No Data Found")
+
+  data class ApiException(override val message: String) : UserThrowable(message)
+}

@@ -1,1 +1,2 @@
-com.arindom.stategenie.processors.StateGenieSymbolProcessorProvider
+com.arindom.stategenie.processors.stategenie.StateGenieSymbolProcessorProvider
+com.arindom.stategenie.processors.datastategenie.DataStateGenieSymbolProcessorProvider

@@ -15,19 +15,33 @@
  */
 package com.arindom.stategenie.processors.util
 
+import com.arindom.stategenie.processors.ProgaurdConfig
+import com.google.devtools.ksp.processing.CodeGenerator
+import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.symbol.KSAnnotation
+import com.google.devtools.ksp.symbol.KSClassDeclaration
+import com.google.devtools.ksp.symbol.KSFile
+import com.squareup.kotlinpoet.ksp.toClassName
 
-fun Sequence<KSAnnotation>.getAnnotation(target: String): KSAnnotation {
+internal fun Sequence<KSAnnotation>.getAnnotation(target: String): KSAnnotation {
   return getAnnotationIfExist(target)
     ?: throw NoSuchElementException("Sequence contains no element matching the $target.")
 }
 
-fun Sequence<KSAnnotation>.getAnnotationIfExist(target: String): KSAnnotation? {
+internal fun Sequence<KSAnnotation>.getAnnotationIfExist(target: String): KSAnnotation? {
   for (element in this) if (element.shortName.asString() == target) return element
   return null
 }
 
-fun Sequence<KSAnnotation>.hasAnnotation(target: String): Boolean {
+internal fun Sequence<KSAnnotation>.hasAnnotation(target: String): Boolean {
   for (element in this) if (element.shortName.asString() == target) return true
   return false
+}
+
+internal fun ProgaurdConfig.writeTo(codeGenerator: CodeGenerator, originatingKSFile: KSFile?) {
+  codeGenerator.createNewFile(dependencies = Dependencies(aggregating = false,
+    sources = originatingKSFile?.let { arrayOf(it) } ?: emptyArray()),
+    packageName = "",
+    fileName = outputFile,
+    extensionName = "").bufferedWriter().use(::writeTo)
 }

@@ -1,27 +1,46 @@
-public final class com/arindom/stategenie/processors/StateGenieAnnotationVisitor : com/google/devtools/ksp/symbol/KSVisitorVoid {
+public final class com/arindom/stategenie/processors/datastategenie/DataGenieStateSymbolProcessor : com/google/devtools/ksp/processing/SymbolProcessor {
+	public fun <init> (Lcom/google/devtools/ksp/processing/KSPLogger;Lcom/google/devtools/ksp/processing/CodeGenerator;Ljava/util/Map;)V
+	public fun process (Lcom/google/devtools/ksp/processing/Resolver;)Ljava/util/List;
+}
+
+public final class com/arindom/stategenie/processors/datastategenie/DataGenieSymbolValidator {
+	public fun <init> ()V
+	public final fun isValid (Lcom/google/devtools/ksp/symbol/KSAnnotated;)Z
+}
+
+public final class com/arindom/stategenie/processors/datastategenie/DataGenieVisitor : com/google/devtools/ksp/symbol/KSVisitorVoid {
+	public static final field Companion Lcom/arindom/stategenie/processors/datastategenie/DataGenieVisitor$Companion;
+	public fun <init> (Lcom/google/devtools/ksp/processing/CodeGenerator;Lcom/google/devtools/ksp/processing/KSPLogger;)V
+	public synthetic fun visitClassDeclaration (Lcom/google/devtools/ksp/symbol/KSClassDeclaration;Ljava/lang/Object;)Ljava/lang/Object;
+	public fun visitClassDeclaration (Lcom/google/devtools/ksp/symbol/KSClassDeclaration;Lkotlin/Unit;)V
+}
+
+public final class com/arindom/stategenie/processors/datastategenie/DataGenieVisitor$Companion {
+}
+
+public final class com/arindom/stategenie/processors/datastategenie/DataStateGenieSymbolProcessorProvider : com/google/devtools/ksp/processing/SymbolProcessorProvider {
+	public fun <init> ()V
+	public fun create (Lcom/google/devtools/ksp/processing/SymbolProcessorEnvironment;)Lcom/google/devtools/ksp/processing/SymbolProcessor;
+}
+
+public final class com/arindom/stategenie/processors/stategenie/StateGenieAnnotationVisitor : com/google/devtools/ksp/symbol/KSVisitorVoid {
 	public fun <init> (Lcom/google/devtools/ksp/processing/KSPLogger;Lcom/google/devtools/ksp/processing/CodeGenerator;Ljava/util/Map;)V
 	public synthetic fun visitClassDeclaration (Lcom/google/devtools/ksp/symbol/KSClassDeclaration;Ljava/lang/Object;)Ljava/lang/Object;
 	public fun visitClassDeclaration (Lcom/google/devtools/ksp/symbol/KSClassDeclaration;Lkotlin/Unit;)V
 }
 
-public final class com/arindom/stategenie/processors/StateGenieProcessor : com/google/devtools/ksp/processing/SymbolProcessor {
+public final class com/arindom/stategenie/processors/stategenie/StateGenieProcessor : com/google/devtools/ksp/processing/SymbolProcessor {
 	public fun <init> (Lcom/google/devtools/ksp/processing/KSPLogger;Lcom/google/devtools/ksp/processing/CodeGenerator;Ljava/util/Map;)V
 	public fun process (Lcom/google/devtools/ksp/processing/Resolver;)Ljava/util/List;
 }
 
-public final class com/arindom/stategenie/processors/StateGenieSymbolProcessorProvider : com/google/devtools/ksp/processing/SymbolProcessorProvider {
+public final class com/arindom/stategenie/processors/stategenie/StateGenieSymbolProcessorProvider : com/google/devtools/ksp/processing/SymbolProcessorProvider {
 	public fun <init> ()V
 	public fun create (Lcom/google/devtools/ksp/processing/SymbolProcessorEnvironment;)Lcom/google/devtools/ksp/processing/SymbolProcessor;
 }
 
-public final class com/arindom/stategenie/processors/StateGenieSymbolValidator {
+public final class com/arindom/stategenie/processors/stategenie/StateGenieSymbolValidator {
 	public fun <init> (Lcom/google/devtools/ksp/processing/KSPLogger;)V
 	public final fun isValid (Lcom/google/devtools/ksp/symbol/KSAnnotated;)Z
-}
-
-public final class com/arindom/stategenie/processors/util/KSHelperKt {
-	public static final fun getAnnotation (Lkotlin/sequences/Sequence;Ljava/lang/String;)Lcom/google/devtools/ksp/symbol/KSAnnotation;
-	public static final fun getAnnotationIfExist (Lkotlin/sequences/Sequence;Ljava/lang/String;)Lcom/google/devtools/ksp/symbol/KSAnnotation;
-	public static final fun hasAnnotation (Lkotlin/sequences/Sequence;Ljava/lang/String;)Z
 }
 
