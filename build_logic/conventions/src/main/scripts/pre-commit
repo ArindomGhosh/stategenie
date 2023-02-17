@@ -9,7 +9,7 @@ stagedFiles=$(git diff --staged --name-only)
 
 # Commit affected files
 for file in $stagedFiles; do
-  echo $file
+  echo files changed: $file
   if test -f "$file"; then
     git add $file
   fi
