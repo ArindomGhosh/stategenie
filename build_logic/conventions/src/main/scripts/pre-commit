@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Run spotless
+echo "Running spotless"
+./gradlew spotlessApply --init-script gradle/init.gradle.kts --no-configuration-cache
+
+# Staged Files
+stagedFiles=$(git diff --staged --name-only)
+echo $?
+
+# Commit affected files
+for file in $stagedFiles; do
+  if test -f "$file"; then
+    git add $file
+  fi
+done

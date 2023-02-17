@@ -55,3 +55,9 @@ fun getVersionCode(version: String): Int {
 apiValidation{
     ignoredProjects += listOf("app")
 }
+
+// https://docs.gradle.org/current/userguide/working_with_files.html#sec:copying_single_file_example
+tasks.register<Copy>("updateGitHook"){
+    from("$rootDir/build_logic/conventions/src/main/scripts/pre-commit")
+    into("$rootDir/.git/hooks")
+}
