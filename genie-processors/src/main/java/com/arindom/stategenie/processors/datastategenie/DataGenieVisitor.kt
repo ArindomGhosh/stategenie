@@ -40,8 +40,8 @@ import java.util.*
 import kotlin.random.Random
 
 class DataGenieVisitor(
-  private val codeGenerator:     CodeGenerator,
-  private val logger:     KSPLogger
+  private val codeGenerator: CodeGenerator,
+  private val logger: KSPLogger
 ) : KSVisitorVoid() {
   override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
     val packageName = classDeclaration.packageName.asString()
