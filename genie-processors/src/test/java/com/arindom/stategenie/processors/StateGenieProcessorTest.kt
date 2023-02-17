@@ -15,6 +15,7 @@
  */
 package com.arindom.stategenie.processors
 
+import com.arindom.stategenie.processors.stategenie.StateGenieSymbolProcessorProvider
 import com.tschuchort.compiletesting.KotlinCompilation
 import com.tschuchort.compiletesting.SourceFile
 import com.tschuchort.compiletesting.kspWithCompilation

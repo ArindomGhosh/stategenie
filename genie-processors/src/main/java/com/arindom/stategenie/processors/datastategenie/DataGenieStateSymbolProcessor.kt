@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.arindom.stategenie.processors
+package com.arindom.stategenie.processors.datastategenie
 
-import com.arindom.stategenie.annotations.StateGenie
+import com.arindom.stategenie.annotations.DataStateGenie
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
@@ -23,31 +23,35 @@ import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.validate
 
-class StateGenieProcessor(
+class DataGenieStateSymbolProcessor(
   private val logger: KSPLogger,
   private val codeGenerator: CodeGenerator,
-  private val options: Map<String, String>
+  private val option: Map<String, String>
 ) : SymbolProcessor {
-  private val _genieAnnotation = StateGenie::class.qualifiedName
-  private val _genieSymbolValidator = StateGenieSymbolValidator(logger)
-  private val _genieSymbolVisitor = StateGenieAnnotationVisitor(
-    logger = logger,
-    codeGenerator = codeGenerator,
-    options = options
-  )
+
+  private val _dataStateGenieAnnonation = DataStateGenie::class.qualifiedName
+  private val _dataGenieStateValidator = DataGenieSymbolValidator()
+  private val _dataGenieStateVisitor =
+    DataGenieVisitor(
+      codeGenerator = codeGenerator,
+      logger = logger
+    )
 
   override fun process(resolver: Resolver): List<KSAnnotated> {
-    var unresolved = emptyList<KSAnnotated>()
-    if (_genieAnnotation != null) {
-      val resolvedSymbols = resolver.getSymbolsWithAnnotation(_genieAnnotation).toList()
-      val validated = resolvedSymbols.filter { it.validate() }
+    var unresolvedSymbols = emptyList<KSAnnotated>()
+    if (_dataStateGenieAnnonation != null) {
+      val resolved = resolver.getSymbolsWithAnnotation(_dataStateGenieAnnonation)
+        .distinct()
+        .toList()
+      if (!resolved.iterator().hasNext()) return emptyList()
+      val validated = resolved.filter { it.validate() }
       validated.filter {
-        _genieSymbolValidator.isValid(it)
+        _dataGenieStateValidator.isValid(it)
       }.forEach {
-        it.accept(_genieSymbolVisitor, Unit)
+        it.accept(_dataGenieStateVisitor, Unit)
       }
-      unresolved = resolvedSymbols - validated.toSet()
+      unresolvedSymbols = resolved - validated.toSet()
     }
-    return unresolved
+    return unresolvedSymbols
   }
 }
