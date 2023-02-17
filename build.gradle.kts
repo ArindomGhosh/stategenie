@@ -61,3 +61,8 @@ tasks.register<Copy>("updateGitHook"){
     from("$rootDir/build_logic/conventions/src/main/scripts/pre-commit")
     into("$rootDir/.git/hooks")
 }
+
+tasks.register<Exec>("createPreCommit"){
+    dependsOn("updateGitHook")
+    commandLine = "chmod +x $rootDir/.git/hooks/pre-commit".split(" ")
+}
