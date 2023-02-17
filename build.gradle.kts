@@ -57,12 +57,12 @@ apiValidation{
 }
 
 // https://docs.gradle.org/current/userguide/working_with_files.html#sec:copying_single_file_example
-tasks.register<Copy>("updateGitHook"){
+tasks.register<Copy>("updatePreCommitHook"){
     from("$rootDir/build_logic/conventions/src/main/scripts/pre-commit")
     into("$rootDir/.git/hooks")
 }
 
-tasks.register<Exec>("createPreCommit"){
-    dependsOn("updateGitHook")
+tasks.register<Exec>("createPreCommitHooks"){
+    dependsOn("updatePreCommitHook")
     commandLine = "chmod +x $rootDir/.git/hooks/pre-commit".split(" ")
 }
