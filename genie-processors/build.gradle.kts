@@ -26,3 +26,7 @@ dependencies {
     testImplementation(libs.junit4)
     testImplementation(libs.kotlin.compile.testing)
 }
+
+tasks.dokkaHtml.configure {
+    outputDirectory.set(rootDir.resolve("docs/${project.name}"))
+}

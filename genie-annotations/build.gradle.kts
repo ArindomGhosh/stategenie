@@ -16,3 +16,6 @@
 plugins {
     id("com.arindom.stategenie.library")
 }
+tasks.dokkaHtml.configure {
+    outputDirectory.set(rootDir.resolve("docs/${project.name}"))
+}
