@@ -1,0 +1,25 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:com.arindom.stategenie.annotations////PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/index.html
+$dokka.location:com.arindom.stategenie.annotations/DataStateConfig///PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-data-state-config/index.html
+$dokka.location:com.arindom.stategenie.annotations/DataStateConfig/DataStateConfig/#kotlin.String#kotlin.reflect.KClass[kotlin.Throwable]#kotlin.Boolean/PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-data-state-config/-data-state-config.html
+$dokka.location:com.arindom.stategenie.annotations/DataStateConfig/errorType/#/PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-data-state-config/error-type.html
+$dokka.location:com.arindom.stategenie.annotations/DataStateConfig/isLoadingDefault/#/PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-data-state-config/is-loading-default.html
+$dokka.location:com.arindom.stategenie.annotations/DataStateConfig/name/#/PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-data-state-config/name.html
+$dokka.location:com.arindom.stategenie.annotations/DataStateGenie///PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-data-state-genie/index.html
+$dokka.location:com.arindom.stategenie.annotations/DataStateGenie/DataStateGenie/#com.arindom.stategenie.annotations.DataStateConfig/PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-data-state-genie/-data-state-genie.html
+$dokka.location:com.arindom.stategenie.annotations/DataStateGenie/dataStateConfig/#/PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-data-state-genie/data-state-config.html
+$dokka.location:com.arindom.stategenie.annotations/StateGenie.Companion///PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-state-genie/-companion/index.html
+$dokka.location:com.arindom.stategenie.annotations/StateGenie.Companion/IS_PARCELABLE/#/PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-state-genie/-companion/-i-s_-p-a-r-c-e-l-a-b-l-e.html
+$dokka.location:com.arindom.stategenie.annotations/StateGenie.Companion/ROOT_NAME/#/PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-state-genie/-companion/-r-o-o-t_-n-a-m-e.html
+$dokka.location:com.arindom.stategenie.annotations/StateGenie///PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-state-genie/index.html
+$dokka.location:com.arindom.stategenie.annotations/StateGenie/StateGenie/#kotlin.String#kotlin.Boolean/PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-state-genie/-state-genie.html
+$dokka.location:com.arindom.stategenie.annotations/StateGenie/isParcelable/#/PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-state-genie/is-parcelable.html
+$dokka.location:com.arindom.stategenie.annotations/StateGenie/rootName/#/PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-state-genie/root-name.html
+$dokka.location:com.arindom.stategenie.annotations/ToState.Companion///PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-to-state/-companion/index.html
+$dokka.location:com.arindom.stategenie.annotations/ToState.Companion/STATE_NAME/#/PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-to-state/-companion/-s-t-a-t-e_-n-a-m-e.html
+$dokka.location:com.arindom.stategenie.annotations/ToState///PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-to-state/index.html
+$dokka.location:com.arindom.stategenie.annotations/ToState/ToState/#kotlin.String/PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-to-state/-to-state.html
+$dokka.location:com.arindom.stategenie.annotations/ToState/stateName/#/PointingToDeclaration/genie-annotations/com.arindom.stategenie.annotations/-to-state/state-name.html
+com.arindom.stategenie.annotations
+
