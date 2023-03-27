@@ -55,3 +55,14 @@ fun getVersionCode(version: String): Int {
 apiValidation{
     ignoredProjects += listOf("app")
 }
+
+// https://docs.gradle.org/current/userguide/working_with_files.html#sec:copying_single_file_example
+tasks.register<Copy>("updatePreCommitHook"){
+    from("$rootDir/build_logic/conventions/src/main/scripts/pre-commit")
+    into("$rootDir/.git/hooks")
+}
+
+tasks.register<Exec>("createPreCommitHooks"){
+    dependsOn("updatePreCommitHook")
+    commandLine = "chmod +x $rootDir/.git/hooks/pre-commit".split(" ")
+}

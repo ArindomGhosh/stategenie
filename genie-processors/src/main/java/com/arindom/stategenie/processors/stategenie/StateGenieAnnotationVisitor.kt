@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.arindom.stategenie.processors
+package com.arindom.stategenie.processors.stategenie
 
 import com.arindom.stategenie.annotations.StateGenie
 import com.arindom.stategenie.annotations.ToState
+import com.arindom.stategenie.processors.ProgaurdConfig
 import com.arindom.stategenie.processors.util.getAnnotationIfExist
+import com.arindom.stategenie.processors.util.writeTo
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.symbol.KSClassDeclaration
-import com.google.devtools.ksp.symbol.KSFile
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
 import com.google.devtools.ksp.symbol.KSType
 import com.google.devtools.ksp.symbol.KSVisitorVoid
@@ -50,8 +51,7 @@ class StateGenieAnnotationVisitor(
     val arguments = classDeclaration.annotations.filter {
       it.shortName.asString() == StateGenie::class.simpleName
     }.first().arguments
-    val rootName =
-      arguments.first { it.name?.asString() == StateGenie.ROOT_NAME }.value as String
+    val rootName = arguments.first { it.name?.asString() == StateGenie.ROOT_NAME }.value as String
     val isParcelable =
       arguments.first { it.name?.asString() == StateGenie.IS_PARCELABLE }.value as Boolean
 
@@ -63,9 +63,7 @@ class StateGenieAnnotationVisitor(
     }
 
     classDeclaration.getAllProperties().forEach {
-      println(it.simpleName.asString())
       val subTypeDef = getSubTypDef(it)
-      println(subTypeDef)
       if (subTypeDef != null) subSetMap[subTypeDef.first] = subTypeDef.second
     }
 
@@ -116,6 +114,7 @@ class StateGenieAnnotationVisitor(
   ) {
     val progaurdConfig = ProgaurdConfig(
       targetClass = targetKClssDecleration.toClassName(),
+      targetClassKind = targetKClssDecleration.classKind,
       extensiveName = extensiveName,
       extensiveConstructorParam = targetKClssDecleration.primaryConstructor?.parameters?.map { param ->
         param.type.resolve().toClassName().reflectionName()
@@ -123,23 +122,9 @@ class StateGenieAnnotationVisitor(
     )
 
     progaurdConfig.writeTo(
+      codeGenerator,
       targetKClssDecleration.containingFile
     )
-  }
-
-  private fun ProgaurdConfig.writeTo(originatingKSFile: KSFile?) {
-    codeGenerator
-      .createNewFile(
-        dependencies = Dependencies(
-          aggregating = false,
-          sources = originatingKSFile?.let { arrayOf(it) } ?: emptyArray()
-        ),
-        packageName = "",
-        fileName = outputFile,
-        extensionName = ""
-      )
-      .bufferedWriter()
-      .use(::writeTo)
   }
 
   private fun getSubTypDef(ksPropertyDeclaration: KSPropertyDeclaration): Pair<String, Pair<String, KSType>>? {
