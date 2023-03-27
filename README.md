@@ -4,8 +4,7 @@ StateGenie provides:
 - `@StateGenie`: To generate `sealed interface` representing a defined set of states.
 It gives you the flexibility of reusing a base model in different scenarios while also enabling you to add new
 models over them based on your requirements reducing the repeated boiler plate code. Link to the [@StateGenie wiki](https://github.com/ArindomGhosh/stategenie/wiki/@StateGenie)
-- `@DataStateGenie`: To generate a single `data class` representing UiState and extension functions to update individual parameters,
-loading state and error object of subtype of Throwable and default constructor function to get the default UiState. Link to the [@DataStateGenie wiki](https://github.com/ArindomGhosh/stategenie/wiki/@DataStateGenie)
+- `@DataStateGenie`: To generate a single `data class` representing UiState and extention functions to update individual parameters, loading state and error object of subtype of Throwable and default constructor function to get the default UiState. Link to the [@DataStateGenie wiki](https://github.com/ArindomGhosh/stategenie/wiki/@DataStateGenie)
 
 ### Gradle Setup
 1. Enable KSP in your app or module `build.gradle.kts`:
